@@ -1,0 +1,143 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Permission;
+use App\Models\Occasion;
+use Hash;
+class OccasionController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $customers = Occasion::get();
+        return response()->json($customers);
+        //return view(_template('customer.index'),['title'=>$title,'customers'=>$customers]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        $title = 'Create Occasion';
+        return view(_template('customer.create'),['title'=>$title]);
+    }
+
+    public function ajax_customers_limit($id)
+    {
+        //
+        
+        $typ =  ($id==1) ? 'B2B' : "B2C";
+        $customers = Occasion::where('customer_type',$id)->get();
+        $option =  "<option>Please select ".$typ."</option>";
+        foreach($customers as $cust){
+            $option .= "<option value=".$cust->id." data-complete=".$cust.">".$cust->company_name.' '.$cust->contact_persion_name."</option>";
+        }
+            $option .="<option value='other'> Other </option>";
+        return response()->json(['option'=>$option,'type'=>$typ]);
+        // $title = 'Create State';
+        // return view(_template('customer.create'),['title'=>$title]);
+    }
+    public function ajax_customers_details($id)
+    {
+        //
+        $customer = Occasion::where('id',$id)->first();    
+        return response()->json($customer);
+        // $title = 'Create State';
+        // return view(_template('customer.create'),['title'=>$title]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validation($request);
+        $data = $request->except(['_token','submit']); 
+        // dd($data);
+        
+        Occasion::create($data);
+        //return redirect()->back()->with('msg','customer is added');
+       return response()->json(['status'=>$data]);
+    }
+
+    public function validation($request){
+        $this->validate($request, [
+            'occasion' => 'required | string',
+            
+        ],
+        [
+            'Occasion.required' => 'Occasion *',
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+         $item = Occasion::find($id);
+        return response()->json($item);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+        $title = 'Edit Occasion';
+        $customer = Occasion::find($id);
+        return view(_template('customer.edit'),['title'=>$title,'customer'=>$customer]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $data = $request->except(['_token','submit','_method']);   
+        Occasion::where('id',$id)->update($data);
+        return response()->json(['msgs'=>$data]);
+        //return redirect()->back()->with('msg','Customer is updated');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+        
+        Occasion::destroy($id);
+        return response()->json(['status'=>true]);
+    }
+}

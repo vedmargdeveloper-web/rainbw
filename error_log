@@ -1,0 +1,530 @@
+[08-Dec-2023 07:25:33 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1253
+[08-Dec-2023 07:25:33 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1262
+[08-Dec-2023 07:25:33 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2482
+[08-Dec-2023 07:25:33 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2607
+[08-Dec-2023 07:25:33 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2619
+[08-Dec-2023 07:25:33 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:35:06 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1253
+[08-Dec-2023 07:35:06 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1262
+[08-Dec-2023 07:35:06 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2482
+[08-Dec-2023 07:35:06 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2607
+[08-Dec-2023 07:35:06 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2619
+[08-Dec-2023 07:35:06 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:35:13 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:38:12 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:38:17 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:38:37 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:38:39 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:39:16 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:42:30 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:43:13 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:43:16 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:43:27 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:44:02 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:44:23 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:55:23 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1253
+[08-Dec-2023 07:55:23 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 1262
+[08-Dec-2023 07:55:23 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2482
+[08-Dec-2023 07:55:23 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2607
+[08-Dec-2023 07:55:23 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 2619
+[08-Dec-2023 07:55:23 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:56:38 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): Failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->compile('/home2/logodoqz...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#5 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(139): Facade\Ignition\Views\Engines\CompilerEngine->get('/home2/logodoqz...', Array)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#8 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#9 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#11 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#12 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#13 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:57:02 UTC] PHP Fatal error:  Uncaught Whoops\Exception\ErrorException: Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/MergeConflictSolutionProvider.php:52
+Stack trace:
+#0 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(444): Whoops\Run->handleError(8192, 'Using ${var} in...', '/home2/logodoqz...', 52)
+#1 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(444): include()
+#2 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home2/logodoqz...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Facade\\Ignition...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/SolutionProviderRepository.php(50): class_implements('Facade\\Ignition...')
+#5 [internal function]: Facade\Ignition\SolutionProviders\SolutionProviderRepository->Facade\Ignition\SolutionProviders\{closure}('Facade\\Ignition...', 10)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Collections/Arr.php(717): array_filter(Array, Object(Closure), 1)
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(358): Illuminate\Support\Arr::where(Array, Object(Closure))
+#8 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/SolutionProviderRepository.php(49): Illuminate\Support\Collection->filter(Object(Closure))
+#9 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Adapters/Laravel/IgnitionSolutionsRepository.php(36): Facade\Ignition\SolutionProviders\SolutionProviderRepository->getSolutionsForThrowable(Object(UnexpectedValueException))
+#10 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Writer.php(244): NunoMaduro\Collision\Adapters\Laravel\IgnitionSolutionsRepository->getFromThrowable(Object(UnexpectedValueException))
+#11 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Writer.php(123): NunoMaduro\Collision\Writer->renderSolution(Object(NunoMaduro\Collision\Adapters\Laravel\Inspector))
+#12 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Handler.php(39): NunoMaduro\Collision\Writer->write(Object(NunoMaduro\Collision\Adapters\Laravel\Inspector))
+#13 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php(72): NunoMaduro\Collision\Handler->handle()
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(185): NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler->renderForConsole(Object(Symfony\Component\Console\Output\ConsoleOutput), Object(UnexpectedValueException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(171): Illuminate\Foundation\Bootstrap\HandleExceptions->renderForConsole(Object(UnexpectedValueException))
+#16 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#17 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/MergeConflictSolutionProvider.php on line 52
+[08-Dec-2023 07:57:02 UTC] PHP Fatal error:  Uncaught Whoops\Exception\ErrorException: Using ${var} in strings is deprecated, use {$var} instead in /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/MergeConflictSolutionProvider.php:52
+Stack trace:
+#0 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(444): Whoops\Run->handleError(8192, 'Using ${var} in...', '/home2/logodoqz...', 52)
+#1 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(444): include()
+#2 /home2/logodoqz/public_html/rainbow/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home2/logodoqz...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Facade\\Ignition...')
+#4 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/SolutionProviderRepository.php(50): class_implements('Facade\\Ignition...')
+#5 [internal function]: Facade\Ignition\SolutionProviders\SolutionProviderRepository->Facade\Ignition\SolutionProviders\{closure}('Facade\\Ignition...', 10)
+#6 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Collections/Arr.php(717): array_filter(Array, Object(Closure), 1)
+#7 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(358): Illuminate\Support\Arr::where(Array, Object(Closure))
+#8 /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/SolutionProviderRepository.php(49): Illuminate\Support\Collection->filter(Object(Closure))
+#9 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Adapters/Laravel/IgnitionSolutionsRepository.php(36): Facade\Ignition\SolutionProviders\SolutionProviderRepository->getSolutionsForThrowable(Object(UnexpectedValueException))
+#10 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Writer.php(244): NunoMaduro\Collision\Adapters\Laravel\IgnitionSolutionsRepository->getFromThrowable(Object(UnexpectedValueException))
+#11 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Writer.php(123): NunoMaduro\Collision\Writer->renderSolution(Object(NunoMaduro\Collision\Adapters\Laravel\Inspector))
+#12 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Handler.php(39): NunoMaduro\Collision\Writer->write(Object(NunoMaduro\Collision\Adapters\Laravel\Inspector))
+#13 /home2/logodoqz/public_html/rainbow/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php(72): NunoMaduro\Collision\Handler->handle()
+#14 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(185): NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler->renderForConsole(Object(Symfony\Component\Console\Output\ConsoleOutput), Object(UnexpectedValueException))
+#15 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(171): Illuminate\Foundation\Bootstrap\HandleExceptions->renderForConsole(Object(UnexpectedValueException))
+#16 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(207): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(UnexpectedValueException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#18 {main}
+  thrown in /home2/logodoqz/public_html/rainbow/vendor/facade/ignition/src/SolutionProviders/MergeConflictSolutionProvider.php on line 52
+[08-Dec-2023 07:58:39 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187, Array)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->comp in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 07:58:52 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187, Array)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->comp in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[08-Dec-2023 08:01:03 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/u516807924/domains/techdost.in/public_html/rainbow/storage/framework/views/d1f88c681143e816463ae1cdd547ff9325b826f9.php): failed to open stream: No such file or directory in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:187
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home2/logodoqz...', 187, Array)
+#1 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(187): file_put_contents('/home/u51680792...', '<?php $__env->s...', 0)
+#2 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(169): Illuminate\Filesystem\Filesystem->put('/home/u51680792...', '<?php $__env->s...')
+#3 /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(55): Illuminate\View\Compilers\BladeCompiler->comp in /home2/logodoqz/public_html/rainbow/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 187
+[11-Dec-2023 16:01:21 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[13-Dec-2023 09:54:55 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Dec-2023 06:43:21 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Dec-2023 06:59:03 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Dec-2023 16:06:52 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Dec-2023 16:12:53 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Dec-2023 16:29:32 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[15-Dec-2023 05:03:45 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[16-Dec-2023 15:25:52 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[16-Dec-2023 15:34:55 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[16-Dec-2023 15:55:09 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Dec-2023 05:56:13 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Dec-2023 06:05:28 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Dec-2023 06:24:22 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Dec-2023 06:53:06 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Dec-2023 03:04:39 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Dec-2023 03:09:57 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Dec-2023 03:40:31 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[21-Dec-2023 08:00:04 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[21-Dec-2023 08:46:33 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[21-Dec-2023 09:05:14 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[22-Dec-2023 00:17:20 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[22-Dec-2023 04:59:07 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[22-Dec-2023 06:12:47 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[22-Dec-2023 09:02:15 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 159
+[23-Dec-2023 20:48:57 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[23-Dec-2023 21:04:37 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[23-Dec-2023 21:26:41 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[23-Dec-2023 21:30:40 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-Dec-2023 05:57:35 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-Dec-2023 08:02:18 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-Dec-2023 08:17:50 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-Dec-2023 08:28:17 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-Dec-2023 10:34:57 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[25-Dec-2023 13:35:11 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[25-Dec-2023 14:32:21 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[25-Dec-2023 14:42:09 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 09:20:38 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 09:29:32 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 159
+[26-Dec-2023 09:36:36 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 13:43:53 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 13:47:34 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 13:57:39 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 14:06:06 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[26-Dec-2023 14:12:18 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[27-Dec-2023 14:36:37 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[27-Dec-2023 14:43:00 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[27-Dec-2023 14:50:58 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[30-Dec-2023 12:49:50 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[30-Dec-2023 13:06:32 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[01-Jan-2024 15:40:28 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 159
+[03-Jan-2024 09:36:45 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 159
+[03-Jan-2024 10:42:11 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 159
+[27-Jan-2024 10:42:02 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[04-Feb-2024 17:39:43 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[08-Feb-2024 08:42:39 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/BookingController.php on line 178
+[13-Feb-2024 12:40:36 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[14-Feb-2024 08:45:19 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 202
+[15-Feb-2024 13:47:11 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 202
+[10-Mar-2024 05:17:44 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[10-Mar-2024 05:40:41 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[08-Apr-2024 09:51:40 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[10-Apr-2024 04:29:41 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[15-Apr-2024 11:58:22 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[15-Apr-2024 12:12:47 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[23-Apr-2024 03:02:31 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[24-May-2024 11:34:04 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[24-May-2024 11:53:01 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[28-May-2024 18:31:01 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[11-Jun-2024 07:54:59 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[11-Jun-2024 21:04:04 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[03-Jul-2024 13:58:07 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[06-Jul-2024 15:53:26 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[16-Jul-2024 10:49:30 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Aug-2024 08:32:56 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[26-Aug-2024 07:19:38 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[30-Aug-2024 17:23:54 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[01-Sep-2024 06:42:52 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[01-Sep-2024 06:51:24 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[02-Sep-2024 07:36:59 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[02-Sep-2024 10:45:29 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[02-Sep-2024 10:56:29 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[05-Sep-2024 15:49:36 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[07-Sep-2024 06:34:28 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[07-Sep-2024 06:35:32 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[09-Sep-2024 04:53:26 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[11-Sep-2024 17:04:27 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[12-Sep-2024 15:07:29 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[13-Sep-2024 10:36:43 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[16-Sep-2024 09:24:13 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[16-Sep-2024 09:37:33 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Sep-2024 08:34:26 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[17-Sep-2024 16:57:37 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[18-Sep-2024 07:23:05 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[18-Sep-2024 09:57:22 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Sep-2024 11:33:26 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[19-Sep-2024 11:53:59 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[20-Sep-2024 09:14:34 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[20-Sep-2024 10:27:41 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[20-Sep-2024 13:35:42 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/InvoiceController.php on line 204
+[22-Sep-2024 08:54:26 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192
+[22-Sep-2024 10:44:54 UTC] PHP Deprecated:  Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home2/logodoqz/public_html/rainbow/app/Http/Controllers/Admin/QuotationController.php on line 192

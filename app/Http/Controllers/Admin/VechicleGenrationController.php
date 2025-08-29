@@ -1,0 +1,128 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Permission;
+use App\Models\VechicleIDGenration;
+use Hash;
+class VechicleGenrationController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $customers = VechicleIDGenration::with(['colors','item'])->get();
+        // dd($customers);
+        return response()->json($customers);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        $title = 'Create State';
+        return view(_template('customer.create'),['title'=>$title]);
+    }
+
+    public function ajax_customers_details($id)
+    {
+        $customer = VechicleIDGenration::where('id',$id)->first();
+        return response()->json($customer);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validation($request);
+        $data = $request->except(['_token','submit']); 
+        VechicleIDGenration::create($data);
+        return response()->json(['status'=>$data]);
+    }
+
+    public function validation($request){
+        $this->validate($request, [
+            'items_id' => 'required | string',
+            'colors_id' => 'required | string',
+            'vechicle_id' => 'required | string | unique:vechicle_genrations,vechicle_id',
+            
+        ],
+        [
+            'items_id.required' => 'Item is required *',
+            'colors_id.required' => 'Color is required *',
+            'vechicle_id.required' => 'Vehicle id is required *',
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+         $item = VechicleIDGenration::with(['colors','item'])->find($id);
+        return response()->json($item);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+        $title = 'Edit State';
+        $customer = VechicleIDGenration::with(['colors','item'])->find($id);
+        return view(_template('customer.edit'),['title'=>$title,'customer'=>$customer]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $data = $request->except(['_token','submit','_method']);   
+        if(VechicleIDGenration::where('id',$id)->update($data)){
+             return response()->json(['msgs'=>$data]);     
+        }
+        return response()->json(['msgs'=>$data]);
+        //return redirect()->back()->with('msg','Customer is updated');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+        
+        VechicleIDGenration::destroy($id);
+        return response()->json(['status'=>true]);
+    }
+}
