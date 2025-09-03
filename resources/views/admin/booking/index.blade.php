@@ -19,6 +19,7 @@
 										<table id="copy-print-csv" class="table custom-table">
 											<thead>
 												<tr>
+													<th>S.No.</th>
 												  <th>Booking No</th>
 												  <th>Quotation Id</th>
 												  <th>Client Name</th>
@@ -43,6 +44,7 @@
 															//dd($venue_details);
 														@endphp
 													<tr>
+														<td>{{ $loop->iteration }}</td>
 													 	<td>{{ $inv->invoice_no  }}</td>
 													 	<td>{{ $inv->quotaiton->invoice_no ?? '' }}</td>
 												 		<td>{{ $customer_details['company_name'] ?? '' }}</td>

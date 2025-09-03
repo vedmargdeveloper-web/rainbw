@@ -1,6 +1,6 @@
 @extends(_app())
 
-@section('title', 'Update Challlan')
+@section('title', 'Update Challan')
 
 @section('content')
 
@@ -13,7 +13,7 @@
             <?php
         	       $customer_type =  App\Models\CustomerTypeMaster::all();
                    $delivery_address =  App\Models\Address::where('type','delivery')->get();
-                   $supply_address =  App\Models\Address::where('type','supply')->get();
+                   $supply_address =  App\Models\Address::get();
                    $challan_items =  App\Models\PerformaInvoiceChallanItem::where('challan_id',$challan->id)->get();
                 //    $performaInvoice = App\Models\Quotation::all();
                    $challanTypes  = App\Models\ChallanTypeMaster::all();
@@ -24,7 +24,7 @@
                    $edit_customer_type =  $customer_type->where('id',$challan->customer_type)->first()  ;
                   // dd($supply_address);
                    $meta =  App\Models\Meta::all();
-
+                   $occasion =  App\Models\Occasion::get();
                    
                    $gstMaster =  App\Models\GstMaster::all();
                    
@@ -181,7 +181,10 @@
                                 <div class="field-group" style="    padding-right: 37px;">
                                     {{-- <b>{{ date('d.m.Y') }}</b> --}}
                                     <b><span id="change_billing_type">Billing</span> Date :</b>
-                                    <input type="date" name="billing_date" value="<?=  $challan->billing_date ?>">
+                                    {{-- <input type="date" name="billing_date" value="<?=  $challan->billing_date ?>"> --}}
+                                    <input type="date" name="billing_date"
+                                       value="{{ $challan->billing_date ? \Carbon\Carbon::parse($challan->billing_date)->format('Y-m-d') : '' }}">
+
                                 </div>
                             </td>
                            
@@ -205,10 +208,16 @@
 
 
                             <td class="text-right td-no-padding" >
-                                <div class="field-group" style="    padding-right: 37px;">
-                                    <b><span id="change_billing_type">Event</span> Time :</b>
-                                    {{-- <input type="date" name="event_date" value="{{ $challan->event_date }}"> --}}
-                                     <input type="time" name="event_time" value="{{ $challan->event_time }}">
+                                <div class="field-group" style="    padding-right: 59px;">
+                                    <b><span id="change_billing_type">Challan</span> Time :</b>
+                                    <?php 
+                                        $currentTime =now()->setTimezone('Asia/Kolkata')->format('h:i');
+                                    ?>
+                                     {{-- <input type="time" name="event_time" 
+                                        value="{{ \Carbon\Carbon::createFromFormat('h:i A', $challan->event_time)->format('H:i') ?? '' }}"> --}}
+                                        <input type="time" name="event_time"
+                                         value="{{ $challan->event_time ? \Carbon\Carbon::parse($challan->event_time)->format('H:i') : '' }}">
+
                                 </div>
                             </td>
 
@@ -236,7 +245,10 @@
                          <tr class="td-no-padding">
                             <td rowspan="" class="td-no-padding">
                                 <div class="label">Rental Start Date :  </div>
-                                <input type="date" name="start_date"  /> </td>
+                                {{-- <input type="date" name="start_date" value="{{ $challan->start_date ?? '' }}" />  --}}
+                                 <input type="date" name="start_date"
+                                      value="{{ $challan->start_date ? \Carbon\Carbon::parse($challan->start_date)->format('Y-m-d') : '' }}">
+                            </td>
                              <td class="text-right td-no-padding">
                             </td>
                             
@@ -244,10 +256,15 @@
                         <tr class="td-no-padding">
                           <td class="td-no-padding"> 
                             <div class="label">Rental End Date : </div>
-                          <input type="date" name="end_date" /></td>
+                            
+                          <input type="date" name="end_date"
+                                 value="{{ $challan->end_date ? \Carbon\Carbon::parse($challan->end_date)->format('Y-m-d') : '' }}">
+                          {{-- <input type="date" name="end_date"  value="{{ $challan->end_date ?? '' }}" /></td> --}}
                              <td class="text-right td-no-padding">
                             </td>
                             
+                           
+
                         </tr>
 
                        {{--  <tr class="td-no-padding">
@@ -256,11 +273,11 @@
                         </tr> --}}
                         <tr class="">
                             <td class="">
-                                <label for="compition">
+                                {{-- <label for="compition">
                                     <input type="checkbox" name="compition" {{ ($challan->customer_type==1) ? 'checked' : '' }} value="1" id="compition" >
                                     Compition
                                 </label>
-                                <br/>
+                                <br/> --}}
                                 <div class="label">Customer Type:  </div>
                                 <div class="field-group">
                                     <span id="cp_type">{{ $edit_customer_type->code ?? '' }}</span>
@@ -329,7 +346,7 @@
 
                                             </td>
                                         </tr>
-                                        @if(isset($delivery_details['dvenue_name']))
+                                        {{-- @if(isset($delivery_details['dvenue_name']))
                                         <tr class="venue_name" style="{{ $delivery_details['dvenue_name'] == null  ? 'display: none' : ''}} ;">
                                             <td>
                                                 <div class="label">Venue Name : </div> 
@@ -340,7 +357,7 @@
                                                
                                             </td>
                                         </tr>
-                                        @endif
+                                        @endif --}}
                                         <tr>
                                             <td>
                                                 <div class="label">Address :</div> 
@@ -456,25 +473,55 @@
                                             <td colspan="2">
                                                 <div class="label">Contact person :</div> 
                                                 <div class="field-group width-full contact-person" >
-                                                    <input type="text" class="w-100" name="contact_person_c" value="{{ $customers_details['contact_person_c'] }}" >
+                                                    <input type="text" class="w-100" name="contact_person_c" value="{{ $customers_details['contact_person_c'] ?? '' }}" >
 
                                                 </div>
                                                 <input type="hidden"  name="select_two_name" id="select_two_name"> 
                                             </td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td colspan="2">
                                                 <div class="label">Mobile :</div> 
                                                 <div class="field-group width-full">
                                                     <input type="text" class="w-100" name="cmobile" value="{{ $customers_details['cmobile'] }}" >
                                                 </div>
                                             </td>
+                                        </tr> --}}
+                                        <tr>
+                                            <td>
+                                               <table>
+                                                    <tbody>
+                                                        <tr class="pincode-inner-tr"  >
+                                                            <td colspan="2" class="td-no-padding">
+                                                               <table>
+                                                                  <tbody>
+                                                                    <tr>
+                                                                        <td style="width: 50%;" class="td-no-padding" >
+                                                                            <div class="label">Mobile :</div> 
+                                                                            <div class="field-group">
+                                                                                <input type="number" class="custom-pincode" name="cmobile"  value="{{ $customers_details['cmobile'] ?? '' }}" > 
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="td-no-padding">
+                                                                            <div class="label label-state">Whatsapp:</div> 
+                                                                            <div class="field-group">
+                                                                                <input type="number" name="cwhatsappmobile"  value="{{ $customers_details['cwhatsappmobile' ] ?? '' }}" class="w-95 ml-2" > 
+                                                                            </div>
+                                                                          </td>
+                                                                       <tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
                                                 <div class="label">Email :</div> 
                                                 <div class="field-group width-full">
-                                                    <input type="text" class="w-100" name="cemail" value="{{ $customers_details['cemail'] }}" >
+                                                    <input type="text" class="w-100" name="cemail" value="{{ $customers_details['cemail'] ?? '' }}" >
                                                 </div>
                                             </td>
                                         </tr>
@@ -484,8 +531,44 @@
                                                 <div class="field-group width-full">
 
 
-                                                    <input type="text" class="w-100" name="cgstin" value="{{ $customers_details['cgstin'] }}" >
+                                                    <input type="text" class="w-100" name="cgstin" value="{{ $customers_details['cgstin']  ?? ''}}" >
                                                 </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="pincode-inner-tr"  >
+                                            <td colspan="2">
+                                               <table>
+                                                  <tbody>
+                                                    <tr>
+                                                        <td style="width: 50%;" class="td-no-padding">
+                                                            <div class="label">Occasion:</div> 
+                                                         
+                                                            <div class="field-group ">
+                                                                <div class="field-group">
+                                                              @php
+                                                                    $customerDetails = json_decode($challan->customer_details, true);
+                                                                    $selectedOccasion = $customerDetails['occasion_id'] ?? null;
+                                                                @endphp
+
+                                                                <select class="form-control select-2" name="occasion_id" style="height: 20px !important;">
+                                                                    @foreach($occasion as $st)
+                                                                        <option value="{{ $st->id }}" {{ $selectedOccasion == $st->id ? 'selected' : '' }}>
+                                                                            {{ $st->occasion }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="td-no-padding">
+                                                            <div class="label label-state label-whatsapp" style="margin-left: 13px;">Readyness</div> 
+                                                            <div class="field-group td-whatsapp">
+                                                                <input type="text"  name="creadyness" value="{{ $customers_details['creadyness'] ?? '' }}" class="w-100" required="">
+                                                            </div>
+                                                        </td>
+                                                    <tr>
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -630,17 +713,12 @@
                                     <input type="hidden" class="phsn" name="phsn[]" value="{{ $challan_item->hsn_code ?? '' }}" />
                                     <td class="item-display">
                                         {{ $challan_item->description ?? '' }} 
+                                        <input type="hidden" class="pfrom_date_hidden" value="{{ $challan_item->from_date}}" />
+                                        <input type="hidden" class="pto_date_hidden" value="{{ $challan_item->to_date }}" />
                                        
                                     </td>
                                     <input type="hidden" class="pdescription"  name="pdescription[]" value="{{ $challan_item->description ?? '' }}"   />
-                                    <input type="hidden" id="pfrom_date" class="pfrom_date"
-                                                style="background-color: yellow;"
-                                                value="{{ $challan_item->from_date}}" />
-                                    <input type="hidden" class="pto_date" id="to_date"
-                                                style="background-color: yellow;"
-                                                value="{{$challan_item->to_date }}" /> 
-                                               
-
+                                    
                                     <input type="hidden" class="pname" name="pname[]" value="{{ $challan_item->item ?? '' }}"/>
                                     <td class="item" style="white-space: normal; word-wrap: break-word; max-width: 150px;">
                                         <select class="form-control select-2 select-item-product" name="item_id[]"
@@ -780,27 +858,88 @@
                         {{-- <tr>
                             <td>Start Date : <input type="date" name="start_date"  value="{{ $challan->start_date }}" /> End Date :<input type="date" value="{{ $challan->end_date }}" name="end_date" /></td>
                         </tr> --}}
-                        <tr>
-                            <td>
-                               {{-- {!! $term_and_conditions->meta_value !!} --}}
-
-                                <p class="center">This is a system generated {{ $challan->challan_type }} and does not require a signature.</p>
-                            </td>
-                        </tr>
+                         <center>
+                        <p class="center" style="padding-bottom: 10px;">This is a system generated challan
+                             and does not require a signature.</p>
+                    </center>
                     </table>
 
                     <table class="billing-info- center">
                         <tr>
                             {{-- <td><a href="{{ route('challan.email',['id'=>$challan->id]) }}" class="btn-print-edit">Email</a></td> --}}
-                            <td><a href="{{ route('challan.print',['id'=>$challan->id]) }}" class="btn-print-edit">Print</a></td>
+                            {{-- <td><a href="{{ route('challan.print',['id'=>$challan->id]) }}" class="btn-print-edit">Print</a> --}}
+                               <td>
+                                <!-- Print Button -->
+                                <a href="javascript:void(0);" 
+                                class="btn-print-edit btn btn-primary" 
+                                data-challan-id="{{ $challan->id }}" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#printChallanModal">
+                                Print
+                                </a>
+                            </td>
                             {{-- <td><a href="{{ route('return.challan.print',['id'=>$challan->id]) }}" class="btn-print-edit">R. Cha. Print</a></td> --}}
                             
-                            <td style="float: right;"><button  class="send btn-submit">Update</button></td>
+                            <td style="float: right;"><button  class="send btn-submit">Update</button>
+                            </td>
+
+                            @php
+                                $returnChallan = \App\Models\PerformaInvoiceChallan::where('original_challan_id', $challan->id)->first();
+                            @endphp
+
+                            {{-- <td style="float: right;">
+                                @if(!$returnChallan)
+                                    <button type="button" 
+                                            class="btn btn-primary btn-print-edit"
+                                            onclick="window.location.href='{{ route('return.challan', ['id' => $challan->id]) }}'">
+                                       Add R.Ch
+                                    </button>
+                                @else
+                                    <button type="button" 
+                                            class="btn btn-primary btn-print-edit"
+                                            onclick="window.location.href='{{ route('challan.edit', ['id' => $returnChallan->id]) }}'" style="display:inline;">
+                                           Edit R.Ch
+                                    </button>
+                                @endif
+                            </td> --}}
                         </tr>
                     </table>
                 </div>
                 
             </form>
+
+            <div class="modal fade" id="printChallanModal" tabindex="-1" aria-labelledby="printChallanModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="printChallanForm" method="GET" action="{{ route('challan.print') }}">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="printChallanModalLabel">Print Challan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @php
+                                    $copyLabels = ['Original', 'Duplicate', 'Triplicate'];
+                                @endphp
+                                @foreach ($copyLabels as $index => $copyLabel)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="copies[]" value="{{ $copyLabel }}" id="copy_{{ $index }}">
+                                        <label class="form-check-label" for="copy_{{ $index }}">
+                                            {{ $copyLabel }}
+                                        </label>
+                                    </div>
+                                @endforeach
+
+                                <!-- Hidden input for challan id -->
+                                <input type="hidden" name="id" id="modalChallanId" value="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Print</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
 
             <script>
         
@@ -833,7 +972,7 @@
                 '                                    <td class="item_qty"><input class="td-input-width item-gross-total"  type="number" name="pqty[]"  value="" /></td>'+
                 '                                    <td class="item_pday"> <input class="td-input-width item-gross-total"   type="number" name="pday[]" value="" /></td>'+
                 '                                    <td class="gross-amount"></td>'+
-                '                                    <td><input class="td-input-width item-discount" type="number" name="pdiscount[]" value="0"/></td>'+
+                // '                                    <td><input class="td-input-width item-discount" type="number" name="pdiscount[]" value="0"/></td>'+
                 '                                    <td class="cgst">0</td>'+
                 '                                    <input type="hidden" class="cgst" name="cgst[]" value="" />'+
                 '                                    <td class="sgst">0</td>'+
@@ -859,6 +998,16 @@
             <script type="text/javascript" src="{{ asset('resources/js/challan.js?v='.time()) }}"></script>
         </div>
     </div>
+
+
+   
+
+<!-- Bootstrap CSS -->
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+<!-- Bootstrap Bundle JS (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
      $(function(){
     $('.main-gst-selection').change();
@@ -896,6 +1045,20 @@
         }, 5000);
         
    });
+
+
+   
+
+</script>
+
+<script>
+   $(document).ready(function() {
+    $('.btn-print-edit').on('click', function() {
+        var challanId = $(this).data('challan-id');
+        $('#modalChallanId').val(challanId);
+    });
+});
+
 </script>
 
 @endsection

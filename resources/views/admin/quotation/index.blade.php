@@ -19,16 +19,20 @@
 							    		<table id="copy-print-csv" class="table custom-table">
 											<thead>
 												<tr>
+												  <th>S.No.</th>
 												  <th>Quotation Id</th>
-												  <th>Client Name</th>
-												  <th>Contact Person</th>
+												  <th>Client</th>
+												  <th>POC</th>
 												  <th>Mobile</th>
-												 {{--  <th>WhatsApp</th> --}}
-												  <th>Occasion</th>
-												  <th>Readyness</th>
+												  <th>Duration</th>
+												  {{-- <th>Occasion</th> --}}
+												
 												  <th>Venue</th>
-												  {{-- <th>City</th> --}}
-												  <th>Item</th>
+												  <th>City</th>
+												  <th>Readyness</th>
+												  {{-- <th>Item</th> --}}
+												  <th>Ticket Size</th>
+												  <th>GP</th>
 												  <th colspan="2">Action</th>
 												</tr>
 											</thead>
@@ -43,21 +47,26 @@
 													@endphp
 														@if($inv->leadstatus && is_object($inv->leadstatus) && $inv->leadstatus->status == 'Update: Pending for Confirmation')
 															<tr>
+																<td>{{ $loop->iteration }}</td>
 																<td>{{ $inv->invoice_no}}.{{ $inv->pitch_count }}</td>
 															 	<td>{{ $customer_details['company_name'] ?? '' }}</td>
 															 	<td>{{ is_numeric( $customer_details['contact_person_c'] ) ?  $customer_details['select_two_name'] ?? '' : $customer_details['contact_person_c'] }}</td>
 															{{--  	<td>{{  == 0 ?  'name' : $customer_details['contact_person_c'] }}</td> --}}
 															 	<td>{{ $customer_details['cmobile'] ?? '' }}</td>
 															 {{-- 	<td>{{ $customer_details['cwhatsapp'] ?? '' }}</td> --}}
-															 	<td>{{ $inv->occasion->occasion ?? '' }}</td>
-															 	<td>{{ $customer_details['creadyness'] ?? '' }}</td>
+															 <td></td>
+															 	{{-- <td>{{ $inv->occasion->occasion ?? '' }}</td> --}}
+															 	
 															 	<td>{{ $venue_details['dvenue_name'] ?? '' }}</td>
-															 	{{-- <td>{{ $venue_details['dcity'] ?? '' }}</td> --}}
-															 	<td> 
+															 	<td>{{ $venue_details['dcity'] ?? '' }}</td>
+																<td>{{ $customer_details['creadyness'] ?? '' }}</td>
+																<td></td>
+																<td></td>
+															 	{{-- <td> 
 															 		@foreach($inv->quotationItem  as $sinitem)
 															 				{{ $sinitem->item ?? '' }},
 															 		@endforeach
-															 	</td>
+															 	</td> --}}
 															 	<td colspan="3" class="td-flex tn-buttons-table">
 															 		<a href="{{ route('quotation.edit',['quotation'=>$inv->id]) }}?&gstid={{$inv->id}}" class="badge badge-success"> Edit
 																 	</a>
@@ -76,8 +85,12 @@
 														 		</a> --}}
 																{{-- <a href="{{ route('returnchallan.print',['id'=>$inv->id]) }}" class="badge badge-info">Rt. Ch 
 														 		</a> --}}
-																<a href="javascript:void(0);" class="badge badge-primary open-print-modal" data-id="{{ $inv->id }}" data-type="challan">Ch.</a>
-                                                                <a href="javascript:void(0);" class="badge badge-info open-print-modal" data-id="{{ $inv->id }}" data-type="return-challan">Rt. Ch</a>
+																 <a href="{{ route('quotation.challan.create',['id'=>$inv->id]) }}?&gstid={{$inv->id}}" class="badge badge-success"> Cr.Ch
+																 	</a>
+																<a href="{{ route('return.challan', ['id' => $inv->id]) }}" 
+																	class="badge badge-info">Rt. Ch</a>
+                                                                <a href="{{ route('challan.index', ['ref_pi_no' => $inv->invoice_no, 'challan_type' => '']) }}" 
+																	class="badge badge-primary">Ch. List</a>
 														 	    </td>
 															</tr>
 														@endif

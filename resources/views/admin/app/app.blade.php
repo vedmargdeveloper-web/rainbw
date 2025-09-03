@@ -26,6 +26,13 @@
     <!-- Icomoon Font Icons css -->
     <link rel="stylesheet" href="{{ asset('resources/fonts/style.css">') }}" ?>
 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-funnel@1.1.0"></script>
+
+
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('resources/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('resources/css/template.css?v='.time()) }}">
@@ -46,7 +53,6 @@
     <link rel="stylesheet" href="{{ asset('resources/vendor/datatables/dataTables.bs4.css') }}" />
     <link rel="stylesheet" href="{{ asset('resources/vendor/datatables/dataTables.bs4-custom.css') }}" />
     <link href="{{ asset('resources/vendor/datatables/buttons.bs.css') }}" rel="stylesheet" />
-
 <!-- Bootstrap Select CSS -->
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -300,6 +306,9 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="{{ route('booking.index') }}">Edit</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ route('admin.booking-calendar') }}">Booking Calendar</a>
                     </li>
                   </ul>
                 </li>
@@ -563,7 +572,7 @@
 
     <script src="{{ asset('resources/js/main.js?v='.time()) }}"></script>
     <script src="{{ asset('resources/js/custom.js?v='.time()) }}"></script>
-
+ 
   </body>
 
 </html>

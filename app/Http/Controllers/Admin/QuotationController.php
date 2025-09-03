@@ -25,8 +25,6 @@ class QuotationController extends Controller
     public function index()
     {
         $invoice = Quotation::with('customerType','leadstatus','inquiry','quotationItem','occasion')->withCount('pitch')->get();
-        // dd($invoice);
-        // dd($invoice);
         return view(_template('quotation.index'),['invoices'=>$invoice,'title'=>'All Quotations']);
     }
 

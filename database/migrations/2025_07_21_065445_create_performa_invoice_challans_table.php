@@ -20,6 +20,7 @@ class CreatePerformaInvoiceChallansTable extends Migration
             $table->string('event_time')->nullable();
             $table->string('customer_type')->nullable();
             $table->string('readyness')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->text('customer_details')->nullable();
             $table->string('delivery_id')->nullable();
             $table->text('delivery_details')->nullable();
@@ -35,6 +36,7 @@ class CreatePerformaInvoiceChallansTable extends Migration
             $table->unsignedInteger('compition')->nullable();
             $table->text('gst_details')->nullable();
             $table->string('amount_in_words')->nullable();
+            $table->unsignedInteger('original_challan_id')->nullable();
             $table->timestamps();
         });
     }

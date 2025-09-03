@@ -11,10 +11,7 @@
         }
     }
 </style>
-      {{-- @php
-            $copyLabels = ['Original', 'Duplicate', 'Triplicate'];
-        @endphp --}}
-    {{-- @foreach ($copyLabels as $index => $copyLabel) --}}
+   @foreach($copies as $copy)
     <div class="content-wrapper">
         <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/invoice.css?v=' . time()) }}">
         <style>
@@ -308,15 +305,7 @@
                                     <tr>
                                         <td colspan="2" class="" style="font-size: 10px; padding-top: 12px;">
                                             <ul class="gst-head-ul">
-                                                {{-- @php
-                                                    $gst_head = [];
-                                                    if (isset($gst_details['head'])) {
-                                                        $gst_head = json_decode($gst_details['head'], true);
-                                                    }
-                                                @endphp
-                                                @foreach ($gst_head as $h)
-                                                    <li>{{ $h }}</li>
-                                                @endforeach --}}
+                                              
                                                 <li>Rental Services of Golf Carts</li>
                                                 <li>Sale & After Sale Service of Golf Carts	</li>
                                             </ul>
@@ -333,8 +322,13 @@
                                             <div style="display: flex; text-align: center; position: relative;">
                                                 <strong><u>Delivery Challan</u></strong>
                                                 <small style="position: absolute; right: 0;">
-                                                    {{-- {{ $copyLabel }} --}}
-                                                   Original
+                                                     {{ $copy }}
+                                                   {{-- @isset($copies)
+                                                        @foreach ($copies as $copy)
+                                                            {{ $copy }}
+                                                        @endforeach
+                                                    @endisset --}}
+
 
                                                 </small>
                                             </div>
@@ -378,7 +372,7 @@
                             <tr>
 
                                 <td>Serial No.:</td>
-                                <td colspan="1" style="display: block; width: 150px; height: 15px;">
+                                <td colspan="1" style="display: block; width: 245px; height: 15px;">
                                    {{ $challan->challan_no }}</td>
                                 <td colspan="4"></td>
                                 <td style="background: unset;border: unset; text-align: right;">
@@ -391,7 +385,7 @@
                              <tr>
 
                                 <td>Ref. PI No.:</td>
-                                <td colspan="1" style="display: block; width: 150px; height: 15px;">
+                                <td colspan="1" style="display: block; width: 245px; height: 15px;">
                                     <?= $challan->ref_pi_no ?></td>
                                 <td colspan="4"></td>
                                 <td style="background: unset;border: unset; text-align: right;">
@@ -410,7 +404,7 @@
                             @if(!empty($challan->start_date) )
                             <tr>
                                 <td>Rental Start Date:</td>
-                                <td style="width: 150px; height: 15px;">
+                                <td style="display: block; width: 245px; height: 22px;">
                                     {{ $challan->start_date }}
                                 </td>
                             </tr>
@@ -418,18 +412,13 @@
                              @if(!empty($challan->end_date))
                             <tr>
                                 <td>Rental End Date:</td>
-                                <td style="width: 150px; height: 15px;">
+                                <td style="display: block; width: 245px; height: 22px;">
                                     {{ $challan->end_date }}
                                 </td>
                             </tr>
                             @endif
-
-                              <tr>
-                                <td colspan="6"></td>
-                            </tr>
-                             <tr>
-                               <td colspan="6"></td>
-                            </tr>
+                              <br>
+                              
                             <tr>
                                 <td>Customer Type: </td>
                                 <td style="display: block; width: 25px; height: 15px;">
@@ -489,7 +478,7 @@
                             </tr>
                             <tr>
                                 <td>Pin Code:</td>
-                                <td>{{ $customers_details['cpincode'] }}</td>
+                                <td>{{ $customers_details['cpincode'] ?? ''}}</td>
                                 <td>Landmark:</td>
                                 <td>{{ $customers_details['clandmark'] ?? '' }} </td>
 
@@ -502,9 +491,9 @@
 
                                 <td colspan="3">
                                     @if (isset($customers_details['contact_name_edit']))
-                                        {{ $customers_details['contact_name_edit'] }}
+                                        {{ $customers_details['contact_name_edit'] ?? '' }}
                                     @else
-                                        {{ $customers_details['contact_person_c'] }}
+                                        {{ $customers_details['contact_person_c'] ?? '' }}
                                     @endif
                                 </td>
                                 <td></td>
@@ -512,26 +501,40 @@
                             </tr>
                             <tr>
                                 <td>Mobile:</td>
-                                <td colspan="3">{{ $customers_details['cmobile'] }}</td>
+                                <td colspan="1">{{ $customers_details['cmobile'] ?? '' }}</td>
+                                <td>Whatsapp:</td>
+                                <td colspan="1">{{ $customers_details['cwhatsappmobile'] ?? '' }}</td>
                                 <td>Contact Person:</td>
                                 <td colspan="3">{{ $delivery_details['dperson'] ?? '' }}</td>
+                                 
+                               
                             </tr>
                             <tr>
                                 <td>Email: </td>
-                                <td colspan="3">{{ $customers_details['cemail'] }}</td>
-
+                                <td colspan="3">{{ $customers_details['cemail'] ?? ''}}</td>
                                 <td>Mobile:</td>
                                 <td colspan="3">{{ $delivery_details['dmobile'] ?? '' }}</td>
 
                             </tr>
                             <tr>
                                 <td>GSTIN: </td>
-                                <td colspan="3">{{ $customers_details['cgstin'] }}</td>
+                                <td colspan="3">{{ $customers_details['cgstin'] ?? ''}}</td>
                                 <td>Pin Code:</td>
                                 <td>{{ $delivery_details['dpincode'] }} </td>
                                 <td>Readyness:</td>
                                 <td>{{ $challan->readyness }}</td>
+                                
                             </tr>
+                                                        <tr>
+                                <td>Occasion:</td>
+                               <td>{{ $challan->occasion->occasion ?? '' }}</td>
+
+                                <td>Readyness:</td>
+                                <td colspan="1">{{ $customers_details['creadyness'] ?? ''}}</td>
+                               
+                               
+                            </tr>
+
                             {{-- <tr>
 
                                 <td>Start Date : </td>
@@ -814,10 +817,10 @@
     </div>
 
 </div>
- {{-- @if (!$loop->last)
+ @if (!$loop->last)
         <div class="page-break"></div>
     @endif
- @endforeach --}}
+ @endforeach
 <script>
     $(function() {
         $('.main-gst-selection').change();

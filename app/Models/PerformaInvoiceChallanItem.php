@@ -27,7 +27,7 @@ class PerformaInvoiceChallanItem extends Model
         'igst',
         'sgst',
         'tax_amount',
-        'total_amount',
+        'total_amount'
     ];
 
     // Relationships

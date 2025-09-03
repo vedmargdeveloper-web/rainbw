@@ -298,7 +298,7 @@ thead tr td{
                           <tr>
 
                               <td >Prf Inv No:</td>
-                              <td colspan="1" style="display: block; width: 122px; height: 15px;"><?=  $invoice->invoice_no ?></td>
+                              <td colspan="1" style="display: block; width: 245px; height: 15px;"><?=  $invoice->invoice_no ?></td>
                               <td colspan="4"></td>
                               
                               <td style="background: unset;border: unset; width: 80px; text-align: right;">Event Date:</td>
