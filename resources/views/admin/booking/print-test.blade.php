@@ -298,7 +298,7 @@ thead tr td{
                           <tr>
 
                               <td>Bill No.:</td>
-                              <td colspan="1" style="display: block; width: 110px; height: 15px;" ><?=  $invoice->invoice_no ?></td>
+                              <td colspan="1" style="display: block; width: 244px; height: 15px;" ><?=  $invoice->invoice_no ?></td>
                               <td colspan="4"></td>
                               <td style="background: unset;border: unset; width: 80px; text-align: right;">Event Date:</td>
                               <td style="background: unset; border-bottom:1px solid black ; text-align: center;"><?=  date('d-m-Y',strtotime($invoice->event_date)) ?></td>

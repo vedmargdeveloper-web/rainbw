@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\OccasionController;
 use App\Http\Controllers\Admin\QuotationController;
 use App\Http\Controllers\Admin\PitchController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\BookingCalendarController;
 use App\Http\Controllers\Admin\AllocationController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\VehicleHeadController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Admin\TransportController;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Admin\ChallanTypeMasterController;
+use Illuminate\Http\Request;
 
 
 
@@ -62,6 +64,7 @@ Route::get('/searchPincode', [AdminController::class, 'searchPincode'])->name('s
 
 Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
 
+
 Route::get('admin',[App\Http\Controllers\Admin\AdminController::class,'index'])->name('admin');
 
 Route::post('admin/login',[App\Http\Controllers\Admin\AdminController::class,'login'])->name('admin.login');
@@ -69,6 +72,8 @@ Route::post('admin/login',[App\Http\Controllers\Admin\AdminController::class,'lo
 Route::middleware([Admin::class])->prefix('admin')->group(function () {
 	 	
 	    Route::get('home',[AdminController::class,'home'])->name('admin.home');
+		Route::get('dashboard/filter-chart', [AdminController::class, 'filterChart'])->name('dashboard.filter-chart');
+
 	    Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
 	    
 	    Route::resource('item', ItemController::class);
@@ -155,12 +160,15 @@ Route::patch('/challan-type/update/{id}', [ChallanTypeMasterController::class, '
 		Route::post('challan/store',[ ChallanController::class,'store'])->name('challan.store');
 		Route::get('challan/edit/{id}',[ ChallanController::class,'edit'])->name('challan.edit');
 		Route::post('challan/update/{id}',[ ChallanController::class,'update'])->name('challan.update');
-		Route::get('challan/print/{id}',[ ChallanController::class,'print'])->name('challan.print');
-		Route::get('return-challan/print/{id}',[ ChallanController::class,'printReturnChallan'])->name('return.challan.print');
+		Route::get('challan/print',[ ChallanController::class,'print'])->name('challan.print');
+		// Route::get('return-challan/print/{id}',[ ChallanController::class,'printReturnChallan'])->name('return.challan.print');
 	    Route::get('challan/email/{id}',[ ChallanController::class,'email'])->name('challan.email');
 
+		Route::get('return-challan/print/{id}',[ ChallanController::class,'returnChallan'])->name('return.challan');
+		Route::post('return-challan/print/{id}',[ ChallanController::class,'returnChallanStore'])->name('return.challan.store');
 
 
+        Route::get('challan/create/{id}',[ ChallanController::class,'createQuotationChallan'])->name('quotation.challan.create');
 
 
 	    Route::get('pitch/print/{id}',[ PitchController::class,'print'])->name('pitch.print');
@@ -193,6 +201,15 @@ Route::patch('/challan-type/update/{id}', [ChallanTypeMasterController::class, '
 	    Route::get('fetch/delivery/details/{type}',[AddressController::class,'ajax_delivery_details'])->name('ajax_delivery_details');
 	    
 	    Route::get('fetch/product/details/{type}',[ItemController::class,'ajax_fetch_item'])->name('ajax_fetch_item');
+
+		// Route::get('/booking-calendar', [BookingCalendarController::class, 'index']);
+		// Route::get('/booking-calendar/events', [BookingCalendarController::class, 'events']); // GET for fetching
+		// Route::post('/booking-calendar/events', [BookingCalendarController::class, 'ajax']);   // POST for add/update/delete
+
+ Route::get('/booking-calendar', [BookingCalendarController::class, 'index'])->name('admin.booking-calendar');
+    Route::get('/booking-calendar/events', [BookingCalendarController::class, 'events'])->name('admin.booking-calendar.events');
+    Route::post('/booking-calendar/events', [BookingCalendarController::class, 'ajax'])->name('admin.booking-calendar.ajax');
+    Route::get('/booking-calendar/events/{id}', [BookingCalendarController::class, 'show'])->name('admin.booking-calendar.show');
 
 
 });

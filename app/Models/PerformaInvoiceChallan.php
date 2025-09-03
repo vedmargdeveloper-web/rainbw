@@ -35,6 +35,7 @@ class PerformaInvoiceChallan extends Model
         'compition',
         'gst_details',
         'amount_in_words',
+        'original_challan_id'
     ];
 
     // Relationships
@@ -51,4 +52,12 @@ class PerformaInvoiceChallan extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+
+    public function occasion()
+    {
+        return $this->belongsTo(Occasion::class, 'occasion_id', 'id');
+    }
+
+    
 }

@@ -478,6 +478,8 @@ $(".invoice-customer-type").change(function () {
         });
 });
 
+
+
 $("body").on("change", ".select-two-name", function () {
     $("input[name='cmobile']").val(global_cphone[$(this).val()]);
     $("#select_two_phone").val(global_cphone[$(this).val()]);
@@ -589,6 +591,7 @@ $(".invoice-supply-address").change(function () {
         });
 });
 
+
 $(".add-product-btn").click(function () {
     var product_id = $(".select-item-product").val();
     var selected_product_qty = $('input[name="qty"]').val();
@@ -658,14 +661,7 @@ $("body").on("focusout", ".item-gross-total", function () {
 
     var tax_amount = (total_gross_amount * tax) / 100;
 
-    
 
-    // commented code on 5 aug 23
-    // console.log('Global_tax_apply',Global_tax_apply);
-    // var tax_amount = (total_gross_amount * Global_tax_apply) / 100;
-
-    //debugger;
-    //alert(Global_tax_apply);
     $(div_tax_amount).text(tax_amount.toFixed(2));
     //    alert('xd');
     $(input_ptax_amount).val(tax_amount.toFixed(2));
@@ -803,6 +799,8 @@ $("body").on("change", ".select-item-product", function () {
     var input_pname = $(this).parents().closest("tr").children("input.pname");
     var input_item_display = $(this).parents().closest("tr").children("td.item-display");
 
+    
+
 
     url = baseUrl + "/admin/fetch/product/details/" + product_id;
     $.ajax({
@@ -813,28 +811,48 @@ $("body").on("change", ".select-item-product", function () {
         .done(function (product) {
             
             
-            $(input_psac).val(product.sac);
-            $(div_input_psac).text(product.sac);
+            $(input_psac).val(product.hsn);
+            $(div_input_psac).text(product.hsn);
 
-            $(input_phsn).val(product.hsn);
-            $(div_input_phsn).text(product.hsn);
+            $(input_phsn).val(product.sac);
+            $(div_input_phsn).text(product.sac);
             $(input_pname).val(product.name);
             $(input_pdescription).val(product.description);
             $(input_pdescription).val(product.description);
            
-            // $(input_item_display).text(product.description);
-           $(input_item_display).html(`
-            <div class="product-name-display">${product.description} </div>
-            <div class="product-date-display" style="margin-top: 5px;">
+           
+             let row = $(input_item_display).closest("tr");
+
+            // grab old edit values BEFORE overwriting HTML
+            let editFrom = row.find(".pfrom_date_hidden").val();
+            let editTo   = row.find(".pto_date_hidden").val();
+
+            // fallback to global defaults
+            let defaultFrom = $("#global_start_date").val();
+            let defaultTo   = $("#global_end_date").val();
+
+            let finalFrom = editFrom ? editFrom : defaultFrom;
+            let finalTo   = editTo ? editTo : defaultTo;
+
+            // now render visible inputs
+            $(input_item_display).html(`
+                <div class="product-name-display">${product.description}</div>
+                <div class="product-date-display" style="margin-top: 5px;">
                     <input type="date" name="pfrom_date[]" class="pfrom_date" 
                         style="background-color: yellow;" 
-                        value="${input_pfromdate.val()}" />
+                        value="${finalFrom}" />
                     <span>till</span>
                     <input type="date" name="pto_date[]" class="pto_date" 
                         style="background-color: yellow;" 
-                        value="${input_ptodate.val()}" />
+                        value="${finalTo}" />
                 </div>
-        `);
+            `);
+
+            // re-add hidden inputs so values are posted to backend too
+            row.append(`
+                <input type="hidden" class="pfrom_date_hidden" name="pfrom_date_hidden[]" value="${finalFrom}" />
+                <input type="hidden" class="pto_date_hidden" name="pto_date_hidden[]" value="${finalTo}" />
+            `);
 
             let the_client_name = $(".invoice-customer-type option:selected").text().trim();
 
@@ -903,11 +921,7 @@ function insertProductList(product_id, selected_product_qty, amount, day) {
                 '">' +
                '<td class="item-display">' +
                     '<div class="product-name-display">' + product.description + '</div>' +
-                    // '<div class="product-date-display" style="margin-top:5px;">' +
-                    //     '<input type="date" name="pfrom_date[]" class="pfrom_date" style="background-color:yellow;" value="' + ($input_pfromdate.val() || "") + '">' +
-                    //     '<span> till </span>' +
-                    //     '<input type="date" name="pto_date[]" class="pto_date" style="background-color:yellow;" value="' + ($input_ptodate.val() || "") + '">' +
-                    // '</div>' +
+                   
                     '<input type="hidden" name="pdescription[]" value="' + product.description + '">' +
                 '</td>' +
                 '<td class="item">' +
