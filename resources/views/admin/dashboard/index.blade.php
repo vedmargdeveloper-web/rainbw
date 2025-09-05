@@ -13,7 +13,8 @@
         .form-select {
             border-radius: 8px;
         }
-        .search{
+
+        .search {
             border-radius: 20px;
             height: 40px;
         }
@@ -21,14 +22,39 @@
     <div class="container-fluid">
         <div class="content-wrapper">
             <div class="container">
-            <form method="GET" action="">
-                <input type="text" 
-                    name="search"  
-                    class="form-control w-100 search" 
-                    placeholder="Search Booking by PI No, Invoice No, Client, POC, Mobile, Venue..."
-                    value="{{ request('search') }}">
-            </form>
-        </div>
+            <div class="search-container position-relative">
+                <form method="GET" action="javascript:void(0);">
+                    <input type="text" name="search" class="form-control w-100 search"
+                       placeholder="Search by PI No, Invoice No, Client Name, POC, Phone, Email, or Venue...">
+
+                </form>
+
+                <!-- Floating search results -->
+                <div id="searchResultsContainer" 
+                    class="card shadow mt-1 position-absolute w-100" 
+                    style="display:none; z-index:1050; max-height:400px; overflow-y:auto;">
+                    <table class="table table-bordered table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Type</th>
+                                <th>Client</th>
+                                <th>POC</th>
+                                <th>Unique ID</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Whatsapp</th>
+                                {{-- <th>Status</th> --}}
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResults"></tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+
 
             <main class="container-fluid py-4 ">
                 <!-- KPI Cards -->
@@ -107,47 +133,49 @@
                     </div>
                 </div>
                 <div class="row g-3 mb-4">
-                 <!-- For Summary -->
+                    <!-- For Summary -->
                     <div class="col-lg-4">
                         <div class="card shadow-sm">
-                             <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="mb-0">Summary</h5>
-                                <div class="d-flex gap-2 mb-2">
-                                    <select id="summaryMonth" class="form-select form-select-sm select-months">
-                                        <option value="">Month</option>
-                                        @for ($m = 1; $m <= 12; $m++)
-                                            <option value="{{ $m }}">{{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
-                                        @endfor
-                                    </select>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="mb-0">Summary</h5>
+                                    <div class="d-flex gap-2 mb-2">
+                                        <select id="summaryMonth" class="form-select form-select-sm select-months">
+                                            <option value="">Month</option>
+                                            @for ($m = 1; $m <= 12; $m++)
+                                                <option value="{{ $m }}">
+                                                    {{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
+                                            @endfor
+                                        </select>
 
-                                    <select id="summaryYear" class="form-select form-select-sm">
-                                        <option value="">Year</option>
-                                        @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
-                                            <option value="{{ $y }}">{{ $y }}</option>
-                                        @endfor
-                                    </select>
+                                        <select id="summaryYear" class="form-select form-select-sm">
+                                            <option value="">Year</option>
+                                            @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
+                                                <option value="{{ $y }}">{{ $y }}</option>
+                                            @endfor
+                                        </select>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="chart-container" style="height: 250px;">
+                                <div class="chart-container" style="height: 250px;">
                                     <canvas id="summaryChart"></canvas>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                     </div>
-                     <!-- For status Inquiry -->
+                    <!-- For status Inquiry -->
                     <div class="col-lg-8">
                         <div class="card shadow-sm">
-                             <div class="card-body">
+                            <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h5 class="mb-0">Status of Inquiries</h5>
-                                   
+
                                     <div class="d-flex gap-2 mb-2">
                                         <select class="form-select form-select-sm select-months" id="leadStatusMonth">
                                             <option value="">Month</option>
                                             @for ($m = 1; $m <= 12; $m++)
-                                                <option value="{{ $m }}">{{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
+                                                <option value="{{ $m }}">
+                                                    {{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
                                             @endfor
                                         </select>
                                         <select class="form-select form-select-sm" id="leadStatusYear">
@@ -164,26 +192,27 @@
                             </div>
                         </div>
                     </div>
-                     <!-- For Loss Business -->
+                    <!-- For Loss Business -->
                     <div class="col-lg-4">
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h5 class="mb-0">Loss of Business</h5>
-                                <div class="d-flex gap-2 mb-2">
-                                    <select class="form-select form-select-sm select-months" id="lossBusinessMonth">
-                                        <option value="">Month</option>
-                                        @for ($m = 1; $m <= 12; $m++)
-                                            <option value="{{ $m }}">{{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
-                                        @endfor
-                                    </select>
-                                    <select class="form-select form-select-sm" id="lossBusinessYear">
-                                        <option value="">Year</option>
-                                        @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
-                                            <option value="{{ $y }}">{{ $y }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
+                                    <div class="d-flex gap-2 mb-2">
+                                        <select class="form-select form-select-sm select-months" id="lossBusinessMonth">
+                                            <option value="">Month</option>
+                                            @for ($m = 1; $m <= 12; $m++)
+                                                <option value="{{ $m }}">
+                                                    {{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
+                                            @endfor
+                                        </select>
+                                        <select class="form-select form-select-sm" id="lossBusinessYear">
+                                            <option value="">Year</option>
+                                            @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
+                                                <option value="{{ $y }}">{{ $y }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="chart-container" style="height: 300px;">
                                     <canvas id="lossBusinessChart"></canvas>
@@ -191,49 +220,52 @@
                             </div>
                         </div>
                     </div>
-                     <!-- For Financial Performance -->
+                    <!-- For Financial Performance -->
                     <div class="col-lg-8">
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class=" mb-0">Financial Performance (<span id="fyText">Business Analysis Report</span>)</h5>
-                                <div class="d-flex gap-2 mb-2">
-                                    <select class="form-select form-select-sm select-months" id="financialMonth">
-                                        <option value="">Month</option>
-                                        @for ($m = 1; $m <= 12; $m++)
-                                            <option value="{{ $m }}">{{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
-                                        @endfor
-                                    </select>
-                                    <select class="form-select form-select-sm" id="financialYear">
-                                        <option value="">Year</option>
-                                        @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
-                                            <option value="{{ $y }}">{{ $y }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
+                                    <h5 class=" mb-0">Financial Performance (<span id="fyText">Business Analysis
+                                            Report</span>)</h5>
+                                    <div class="d-flex gap-2 mb-2">
+                                        <select class="form-select form-select-sm select-months" id="financialMonth">
+                                            <option value="">Month</option>
+                                            @for ($m = 1; $m <= 12; $m++)
+                                                <option value="{{ $m }}">
+                                                    {{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
+                                            @endfor
+                                        </select>
+                                        <select class="form-select form-select-sm" id="financialYear">
+                                            <option value="">Year</option>
+                                            @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
+                                                <option value="{{ $y }}">{{ $y }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
 
                                 </div>
-                                 <div class="chart-container" style="height: 300px;">
+                                <div class="chart-container" style="height: 300px;">
                                     <canvas id="financialChart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              
+
 
                 <!-- Tables Section -->
                 <div class="row g-3">
-                    <div class="col-xl-12">
+                    {{-- <div class="col-xl-12">
                         <div class="card shadow-sm">
                             <div class="card-header">
-                                <h5 class="mb-0">Recent Activity / View Leads</h5>
+                                <h5 class="mb-0">Finds Values</h5>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Unique Id</th>
+                                            <th>S/No.</th>
+                                            <th>Type</th>
                                             <th>Client Name</th>
                                             <th>Unique id</th>
                                             <th>Phone No</th>
@@ -258,8 +290,9 @@
 
                                                 @endphp
                                                 <tr>
-                                                    <td>{{ $inv->unique_id ?? '' }} </td>
+                                                    <td>{{ $loop->iteration }} </td>
                                                     <td>{{ $inv->customer->company_name ?? '' }}</td>
+                                                    <td>{{ }}</td>
                                                     <td>{{ $inv->unique_id }}</td>
                                                     <td>{{ $contact_person ? $contact_person_mobile[$inv->contact_person_c] ?? $contact_person_mobile[0] : 'Something Wrong' }}
                                                     </td>
@@ -279,9 +312,9 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-xl-12">
+                    {{-- <div class="col-xl-12">
                         <div class="card shadow-sm">
                             <div class="card-header">
                                 <h5 class="mb-0">Upcoming Events</h5>
@@ -301,7 +334,6 @@
                                             <th>Venue</th>
                                             <th>Occassion</th>
                                             <th>Total Amount</th>
-                                            {{-- <th>Items</th> --}}
                                             <th colspan="2">Action</th>
                                         </tr>
                                     </thead>
@@ -311,7 +343,6 @@
                                                 @php
                                                     $customer_details = json_decode($inv->customer_details, true);
                                                     $venue_details = json_decode($inv->delivery_details, true);
-                                                    //dd($venue_details);
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
@@ -330,11 +361,6 @@
 
 
                                                     <td>{{ $inv->total_amount }}</td>
-                                                    {{-- <td>
-                                                        @foreach ($inv->bookingItem as $sinitem)
-                                                            {{ $sinitem->item ?? '' }},
-                                                        @endforeach
-                                                    </td> --}}
                                                     <td colspan="3">
 
                                                         <a href="{{ route('booking.print', ['id' => $inv->id]) }}"
@@ -355,11 +381,42 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
+                <div class="modal fade" id="searchModal" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Search Results</h5>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">x</button>
+                    </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                <th>S/No</th>
+                                <th>Type</th>
+                                <th>Client</th>
+                                <th>Unique ID</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Whatsapp</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResults"></tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
             </main>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         const base_url = "{{ config('app.url') }}";
 
@@ -517,7 +574,7 @@
             });
 
             // Business Loss Chart
-          const lossBusinessLabels = @json(array_column($lossBusinessFinal, 'head'));
+            const lossBusinessLabels = @json(array_column($lossBusinessFinal, 'head'));
             const lossBusinessData = @json(array_column($lossBusinessFinal, 'qty'));
             const lossBusinessPerc = @json(array_column($lossBusinessFinal, 'percent'));
 
@@ -550,11 +607,13 @@
                         plugins: {
                             legend: {
                                 position: 'right',
-                                labels: { boxWidth: 15 }
+                                labels: {
+                                    boxWidth: 15
+                                }
                             },
                             tooltip: {
                                 callbacks: {
-                                    label: function (context) {
+                                    label: function(context) {
                                         const idx = context.dataIndex;
                                         const qty = lossBusinessData[idx];
                                         const perc = lossBusinessPerc[idx];
@@ -569,7 +628,7 @@
                 console.warn("No data for Loss Business Chart");
             }
 
-             const charts = {
+            const charts = {
                 summary: summaryChart,
                 leadStatus: leadStatusChart,
                 lossBusiness: lossBusinessChart,
@@ -577,40 +636,41 @@
             };
 
             // ===== UPDATE CHART FUNCTION =====
-          function updateChart(type, month, year) {
-            console.log("Updating chart:", type, "Month:", month, "Year:", year);
+            function updateChart(type, month, year) {
+                console.log("Updating chart:", type, "Month:", month, "Year:", year);
 
-            fetch(`${base_url}/admin/dashboard/filter-chart?chartType=${type}&month=${month}&year=${year}`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log("Data received for", type, data); 
+                fetch(`${base_url}/admin/dashboard/filter-chart?chartType=${type}&month=${month}&year=${year}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("Data received for", type, data);
 
-                    const chart = charts[type];
-                    if (!chart) {
-                        console.error("Chart not found:", type);
-                        return;
-                    }
+                        const chart = charts[type];
+                        if (!chart) {
+                            console.error("Chart not found:", type);
+                            return;
+                        }
 
-                    if (type === 'summary') {
-                        chart.data.labels = data.labels;
-                        chart.data.datasets[0].data = data.qtyValues;
-                    } else if (type === 'leadStatus') {
-                        chart.data.labels = data.labels;
-                        chart.data.datasets[0].data = data.data;
-                    } else if (type === 'lossBusiness') {
-                        chart.data.labels = data.map(d => d.head);
-                        chart.data.datasets[0].data = data.map(d => d.qty);
-                    } else if (type === 'financial') {
-                        chart.data.datasets[0].data = data.ttBusinessData;
-                        chart.data.datasets[1].data = data.gpPercentData;
-                        chart.data.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
-                            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    }
+                        if (type === 'summary') {
+                            chart.data.labels = data.labels;
+                            chart.data.datasets[0].data = data.qtyValues;
+                        } else if (type === 'leadStatus') {
+                            chart.data.labels = data.labels;
+                            chart.data.datasets[0].data = data.data;
+                        } else if (type === 'lossBusiness') {
+                            chart.data.labels = data.map(d => d.head);
+                            chart.data.datasets[0].data = data.map(d => d.qty);
+                        } else if (type === 'financial') {
+                            chart.data.datasets[0].data = data.ttBusinessData;
+                            chart.data.datasets[1].data = data.gpPercentData;
+                            chart.data.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+                                'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                            ];
+                        }
 
-                    chart.update();
-                })
-                .catch(error => console.error('Error fetching chart data:', error));
-        }
+                        chart.update();
+                    })
+                    .catch(error => console.error('Error fetching chart data:', error));
+            }
 
 
             // ===== ATTACH FILTER EVENTS =====
@@ -635,5 +695,60 @@
             addFilterEvents('financial', 'financialMonth', 'financialYear');
 
         });
+
+
+        $(document).ready(function () {
+            let timer;
+
+            $('.search').on('keyup', function () {
+                clearTimeout(timer);
+                let searchTerm = $(this).val();
+
+                if (searchTerm.length < 2) {
+                    $('#searchResultsContainer').hide();
+                    $('#searchResults').html('');
+                    return;
+                }
+
+                timer = setTimeout(function () {
+                    $.ajax({
+                        url: "{{ route('dashboard.search') }}",
+                        type: "GET",
+                        data: { search: searchTerm },
+                        success: function (data) {
+                            let rows = '';
+
+                            if (data.length === 0) {
+                                rows = `<tr><td colspan="9" class="text-center">No results found</td></tr>`;
+                            } else {
+                                data.forEach((item, index) => {
+                                    rows += `
+                                        <tr>
+                                            <td>${index + 1}</td>
+                                            <td>${item.type}</td>
+                                            <td>${item.client}</td>
+                                            <td>${item.poc}</td>
+                                            <td>${item.unique_id}</td>
+                                            <td>${item.phone}</td>
+                                            <td>${item.email}</td>
+                                            <td>${item.whatsapp}</td>
+                                        
+                                            <td>
+                                                <a href="${item.edit_url}" class="btn btn-sm btn-primary">Edit</a>
+                                            </td>
+                                        </tr>
+                                    `;
+                                });
+                            }
+
+                            $('#searchResults').html(rows);
+                            $('#searchResultsContainer').show();
+                        }
+                    });
+                }, 400);
+            });
+        });
+
+
     </script>
 @endsection
