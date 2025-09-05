@@ -439,6 +439,156 @@ class AdminController extends Controller
         }
     }
 
+
+//    public function search(Request $request)
+// {
+//     $term = $request->input('search');
+
+//     // ===== Inquiries =====
+//     $inquiries = Inquiry::with(['customer','leadstatus'])
+//         ->whereHas('customer', fn($q) => $q->where('company_name', 'like', "%$term%"))
+//         ->orWhere('unique_id', 'like', "%$term%")
+//         ->get()
+//         ->map(function ($item) {
+//             return [
+//                 'type'      => 'Inquiry',
+//                 'client'    => $item->customer->company_name ?? '',
+//                 'unique_id' => $item->unique_id,
+//                 'phone'     => $item->customer->mobile ?? '',
+//                 'email'     => $item->customer->email ?? '',
+//                 'whatsapp'  => $item->customer->cwhatsapp ?? '',
+//                 'status'    => $item->leadstatus->status ?? '',
+//                 'id'        => $item->id,
+//                 'edit_url'  => route('inquiry.edit', $item->id), // ✅ Laravel route
+//             ];
+//         });
+
+//     // ===== Bookings =====
+//     $bookings = Booking::with(['customerType'])
+//         ->where('invoice_no', 'like', "%$term%")
+//         ->orWhere('id', 'like', "%$term%")
+//         ->get()
+//         ->map(function ($item) {
+//             return [
+//                 'type'      => 'Booking',
+//                 'client'    => $item->customerType->company_name ?? '',
+//                 'unique_id' => $item->invoice_no,
+//                 'phone'     => $item->customerType->mobile ?? '',
+//                 'email'     => $item->customerType->email ?? '',
+//                 'whatsapp'  => '',
+//                 'status'    => 'N/A',
+//                 'id'        => $item->id,
+//                 'edit_url'  => route('booking.edit', $item->id), // ✅
+//             ];
+//         });
+
+//     // ===== Quotations =====
+//     $quotations = Quotation::with(['customer'])
+//         ->where('invoice_no', 'like', "%$term%")
+//         ->get()
+//         ->map(function ($item) {
+//             return [
+//                 'type'      => 'Quotation',
+//                 'client'    => $item->customer->company_name ?? '',
+//                 'unique_id' => $item->invoice_no,
+//                 'phone'     => $item->customer->mobile ?? '',
+//                 'email'     => $item->customer->email ?? '',
+//                 'whatsapp'  => '',
+//                 'status'    => 'N/A',
+//                 'id'        => $item->id,
+//                 'edit_url'  => route('quotation.edit', $item->id), // ✅
+//             ];
+//         });
+
+//     $results = $inquiries->merge($bookings)->merge($quotations);
+
+//     return response()->json($results);
+// }
+
+public function search(Request $request)
+{
+    $term = $request->input('search');
+
+    // ===== Inquiries =====
+    $inquiries = Inquiry::query()
+        ->where('unique_id', 'like', "%$term%")
+        ->orWhere('customer_details->company_name', 'like', "%$term%")
+        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
+        ->orWhere('email', 'like', "%$term%")
+        ->orWhere('phone', 'like', "%$term%")
+        ->get()
+        ->map(function ($item) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+
+            return [
+                'type'      => 'Inquiry',
+                'client'    => $customer['company_name'] ?? '',
+                'unique_id' => $item->unique_id,
+                'phone'     => $customer['cmobile'] ?? $item->phone ?? '',
+                'poc'       => $customer['contact_person_c'] ?? '',
+                'email'     => $customer['cemail'] ?? $item->email ?? '',
+                'whatsapp'  => $customer['cwhatsapp'] ?? '',
+                'status'    => $item->status_id ?? '',
+                'id'        => $item->id,
+                'edit_url'  => route('inquiry.edit', $item->id),
+            ];
+        });
+
+    // ===== Bookings =====
+    $bookings = Booking::query()
+        ->where('invoice_no', 'like', "%$term%")
+        ->orWhere('id', 'like', "%$term%")
+        ->orWhere('customer_details->company_name', 'like', "%$term%")
+        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
+        ->get()
+        ->map(function ($item) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+
+            return [
+                'type'      => 'Booking',
+                'client'    => $customer['company_name'] ?? '',
+                'unique_id' => $item->invoice_no,
+                'phone'     => $customer['cmobile'] ?? '',
+                'poc'       => $customer['contact_person_c'] ?? '',
+                'email'     => $customer['cemail'] ?? '',
+                'whatsapp'  => $customer['cwhatsapp'] ?? '',
+                'status'    => $item->lead_status ?? 'N/A',
+                'id'        => $item->id,
+                'edit_url'  => route('booking.edit', $item->id),
+            ];
+        });
+
+    // ===== Quotations =====
+    $quotations = Quotation::query()
+        ->where('invoice_no', 'like', "%$term%")
+        ->orWhere('customer_details->company_name', 'like', "%$term%")
+        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
+        ->get()
+        ->map(function ($item) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+
+            return [
+                'type'      => 'Quotation',
+                'client'    => $customer['company_name'] ?? '',
+                'unique_id' => $item->invoice_no,
+                'phone'     => $customer['cmobile'] ?? '',
+                'poc'       => $customer['contact_person_c'] ?? '',
+                'email'     => $customer['cemail'] ?? '',
+                'whatsapp'  => $customer['cwhatsapp'] ?? '',
+                'status'    => $item->lead_status ?? 'N/A',
+                'id'        => $item->id,
+                'edit_url'  => route('quotation.edit', $item->id),
+            ];
+        });
+
+    $results = $inquiries->merge($bookings)->merge($quotations);
+
+    return response()->json($results);
+}
+
+
+
+
     public function teachers(){
 
         return view('admin/setting/all_teacher');

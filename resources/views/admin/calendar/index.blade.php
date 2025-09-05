@@ -1,11 +1,6 @@
 @extends(_app())
-
 @section('title', 'Booking Calendar')
-
 @section('content')
-
-{{-- <!DOCTYPE html>
-<html lang="en"> --}}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,6 +99,39 @@
              background: #b1cbdf; 
              color: #5a5c69;
             }
+
+        .card-upcoming {
+             background: #d4edda; 
+             color: #5a5c69;
+            }
+
+        #bookingModal .modal-body p {
+            margin-bottom: 4px;      
+            font-size: 13px;         
+            font-weight: 400;         
+            line-height: 1.2;        
+        }
+
+        
+
+        #bookingModal .modal-body p strong {
+            font-weight: 600;        
+        }
+
+        #bookingModal h6 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        #bookingModal table {
+            font-size: 12px;        
+        }
+
+        #bookingModal table th,
+        #bookingModal table td {
+            padding: 4px 6px;  
+        }
     </style>
 </head>
 <body>
@@ -117,7 +145,7 @@
 
         <!-- Stats Cards -->
         <div class="row">
-            <div class="col-xl-4 col-md-6 ">
+            <div class="col-xl-3 col-md-6 ">
                 <div class="stats-card card-primary ">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -130,36 +158,8 @@
                     </div>
                 </div>
             </div>
-            
-            {{-- <div class="col-xl-3 col-md-6 ">
-                <div class="stats-card card-success">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">This Month</div>
-                            <div class="h5 mb-0 font-weight-bold" id="monthBookings">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar-alt fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            
-            <div class="col-xl-4 col-md-6 ">
-                <div class="stats-card card-warning">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Upcoming</div>
-                            <div class="h5 mb-0 font-weight-bold" id="upcomingBookings">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar-day fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-xl-4 col-md-6 ">
+         
+            <div class="col-xl-3 col-md-6 ">
                 <div class="stats-card card-danger">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -172,55 +172,34 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Filters -->
-        {{-- <div class="row">
-            <div class="col-12">
-                <div class="filter-section">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="occasionFilter">Occasion</label>
-                                <select class="form-control" id="occasionFilter">
-                                    <option value="">All Occasions</option>
-                                    <option value="Wedding">Wedding</option>
-                                    <option value="Birthday">Birthday</option>
-                                    <option value="Corporate">Corporate</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
+             <div class="col-xl-3 col-md-6 ">
+                <div class="stats-card card-warning">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Upcoming</div>
+                            <div class="h5 mb-0 font-weight-bold" id="upcomingBookings">0</div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="venueFilter">Venue</label>
-                                <input type="text" class="form-control" id="venueFilter" placeholder="Filter by venue">
-                            </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar-day fa-2x"></i>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="clientFilter">Client</label>
-                                <input type="text" class="form-control" id="clientFilter" placeholder="Filter by client">
-                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 ">
+                <div class="stats-card card-upcoming">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Upcoming Revenue</div>
+                            <div class="h5 mb-0 font-weight-bold" id="totalUpcomingRevenue">₹0</div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="dateRangeFilter">Date Range</label>
-                                <select class="form-control" id="dateRangeFilter">
-                                    <option value="">All Dates</option>
-                                    <option value="today">Today</option>
-                                    <option value="week">This Week</option>
-                                    <option value="month">This Month</option>
-                                    <option value="nextMonth">Next Month</option>
-                                </select>
-                            </div>
+                        <div class="col-auto">
+                            <i class="fas fa-rupee-sign fa-2x"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         --}}
-        <!-- Calendar -->
+    
         <div class="row">
             <div class="col-12">
                 <div class="calendar-container">
@@ -230,9 +209,10 @@
         </div>
     </div>
     
+  
     <!-- Booking Details Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Booking Details</h5>
@@ -242,65 +222,31 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p><strong>Booking No:</strong> <span id="modal_booking_no"></span></p>
-                            <p><strong>Quotation No:</strong> <span id="modal_quotation_no"></span></p>
-                            <p><strong>Client Name:</strong> <span id="modal_client_name"></span></p>
                             <p><strong>Contact Person:</strong> <span id="modal_contact_name"></span></p>
                             <p><strong>Mobile:</strong> <span id="modal_mobile"></span></p>
+                            <p><strong>Occasion:</strong> <span id="modal_occasion"></span></p>
                         </div>
                         <div class="col-md-6">
+                            <p><strong>Client Name:</strong> <span id="modal_client_name"></span></p>
                             <p><strong>Venue:</strong> <span id="modal_venue"></span></p>
-                            <p><strong>Occasion:</strong> <span id="modal_occasion"></span></p>
+                            <p><strong>Delivery Address:</strong> <span id="modal_delivery_address"></span></p>
                             <p><strong>Date:</strong> <span id="modal_date"></span></p>
-                            <p><strong>Total Amount:</strong> ₹<span id="modal_total_amount"></span></p>
-                            <p><strong>Total Amount:</strong> ₹<span id="modal_total_tax"></span></p> 
+                           
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <p><strong>Items:</strong> <span id="modal_items"></span></p>
+                            <h6><strong>Items:</strong></h6>
+                            <div id="modal_items"></div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="editBookingBtn">Edit</button>
+                   <a href="#" class="btn btn-primary" id="editBookingBtn" target="_blank">Edit</a>
+
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Create Booking Modal -->
-    <div class="modal fade" id="createBookingModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create New Booking</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="createBookingForm">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="clientName" class="form-label">Client Name</label>
-                            <input type="text" class="form-control" id="clientName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bookingDate" class="form-label">Booking Date</label>
-                            <input type="date" class="form-control" id="bookingDate" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bookingVenue" class="form-label">Venue</label>
-                            <input type="text" class="form-control" id="bookingVenue">
-                        </div>
-                        <div class="mb-3">
-                            <label for="bookingAmount" class="form-label">Total Amount (₹)</label>
-                            <input type="number" class="form-control" id="bookingAmount" min="0">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Create Booking</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -351,35 +297,101 @@ $('#calendar').fullCalendar({
     eventRender: function(event, element) {
         element.find('.fc-title').html(
             '<strong>' + event.title + '</strong>' + 
-            '<br><small>' + event.venue + '</small>' +
-            '<br><small>₹' + event.total_amount + '</small>'
+            '<br><small>' + event.delivery_address + '</small>' +
+            '<br><small>₹' + event.net_amount + '</small>'
         );
     },
-    eventClick: function(event) {
-        $.ajax({
-            url: SITEURL + "/booking-calendar/events/" + event.id,
-            type: "GET",
-            success: function(response) {
-                $('#modal_booking_no').text(response.booking_no);
-                $('#modal_quotation_no').text(response.quotation_no);
-                $('#modal_client_name').text(response.client_name);
-                $('#modal_contact_name').text(response.contact_name);
-                $('#modal_mobile').text(response.mobile);
-                $('#modal_venue').text(response.venue);
-                $('#modal_occasion').text(response.occasion);
-                $('#modal_date').text(response.date);
-                $('#modal_total_amount').text(response.total_amount);
-                $('#modal_total_tax').text(response.total_tax);
-                $('#modal_items').text(response.items);
+   eventClick: function(event) {
+    $.ajax({
+        url: SITEURL + "/booking-calendar/events/" + event.id,
+        type: "GET",
+        success: function(response) {
+            // Fill simple fields
+            $('#modal_booking_no').text(response.booking_no);
+            $('#modal_quotation_no').text(response.quotation_no);
+            $('#modal_client_name').text(response.client_name);
+            $('#modal_contact_name').text(response.contact_name);
+            $('#modal_mobile').text(response.mobile);
+            $('#modal_venue').text(response.venue);
+            $('#modal_delivery_address').text(response.full_delivery_address);
+            $('#modal_occasion').text(response.occasion);
+            $('#modal_date').text(response.date);
+            $('#modal_net_amount').text(response.net_amount);
+            $('#modal_total_tax').text(response.total_tax);
+            $('#modal_amount_in_words').text(response.amount_in_words);
+            $('#modal_event_id').text(response.id);
+
+            // Build items table
+            let itemsHtml = `<table class="table table-bordered table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>S.No</th>
+                        <th>HSN</th>
+                        <th>Description</th>
+                        <th>Item</th>
+                        <th>Rate</th>
+                        <th>Qty</th>
+                        <th>Days</th>
+                        <th>Gross</th>
+                        <th>Discount</th>
+                        <th>CGST</th>
+                        <th>SGST</th>
+                        <th>IGST</th>
+                        <th>Tax Amt</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            response.items.forEach(item => {
+                itemsHtml += `
+                    <tr>
+                        <td>${item.sno}</td>
+                        <td>${item.hsn_code}</td>
+                        <td>${item.description}</td>
+                        <td>${item.item}</td>
+                        <td>${item.rate}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.days}</td>
+                        <td>${item.gross_amount}</td>
+                        <td>${item.discount}</td>
+                        <td>${item.cgst}</td>
+                        <td>${item.sgst}</td>
+                        <td>${item.igst}</td>
+                        <td>${item.tax_amount}</td>
+                        <td>${item.total_amount}</td>
+                    </tr>`;
+            });
+
+            // Add footer row like in invoice
+            itemsHtml += `
+                <tr class="center bottom-footer-tr">
+                    <td></td>
+                    <td colspan="3">Tax Payable on Rev. Charge Basis: NO</td>
+                    <td colspan="3">Net Amount</td>
+                    <td>${response.net_amount}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>${response.total_tax}</td>
+                    <td>${response.total_amount}</td>
+                </tr>
                 
-                
-                $('#bookingModal').modal('show');
-            },
-            error: function() {
-                toastr.error('Failed to load booking details');
-            }
-        });
-    },
+            `;
+
+            itemsHtml += `</tbody></table>`;
+            $('#modal_items').html(itemsHtml);
+
+             $('#editBookingBtn').attr('href', SITEURL + '/booking/' + response.id + '/edit');
+            $('#bookingModal').modal('show');
+        },
+        error: function() {
+            toastr.error('Failed to load booking details');
+        }
+    });
+}
+,
     eventDrop: function(event) {
         $.ajax({
             url: SITEURL + "/booking-calendar/events",
@@ -453,32 +465,6 @@ $('#occasionFilter, #venueFilter, #clientFilter, #dateRangeFilter').on('change k
     updateStats(filteredEvents);
 });
 
-// Create booking
-$('#createBookingForm').on('submit', function(e) {
-    e.preventDefault();
-    var formData = {
-        title: $('#clientName').val(),
-        start: $('#bookingDate').val(),
-        venue: $('#bookingVenue').val(),
-        total_amount: $('#bookingAmount').val() || 0,
-        type: 'add'
-    };
-
-    $.ajax({
-        url: SITEURL + "/booking-calendar/events",
-        type: "POST",
-        data: formData,
-        success: function() {
-            $('#createBookingModal').modal('hide');
-            $('#createBookingForm')[0].reset();
-            $('#calendar').fullCalendar('refetchEvents');
-            toastr.success('Booking created successfully');
-        },
-        error: function() {
-            toastr.error('Failed to create booking');
-        }
-    });
-});
 
 // Today button
 $('#todayBtn').click(function() {
@@ -490,30 +476,51 @@ $('#createBookingBtn').click(function() {
     $('#createBookingModal').modal('show');
 });
 
-// Update stats
+
+
 function updateStats(events) {
     $('#totalBookings').text(events.length);
     
     var thisMonth = moment().format('YYYY-MM');
-    var monthCount = events.filter(function(event) {
+    var monthEvents = events.filter(function(event) {
         return moment(event.start).format('YYYY-MM') === thisMonth;
-    }).length;
-    $('#monthBookings').text(monthCount);
+    });
+    $('#monthBookings').text(monthEvents.length);
     
     var today = moment().startOf('day');
-    var upcomingCount = events.filter(function(event) {
-        return moment(event.start).isSameOrAfter(today);
-    }).length;
-    $('#upcomingBookings').text(upcomingCount);
+
+    // Today’s events
+    var todayEvents = events.filter(function(event) {
+        return moment(event.start).isSame(today, 'day');
+    });
+    $('#todayBookings').text(todayEvents.length);
+
+    // Upcoming (strictly after today)
+    var upcomingEvents = events.filter(function(event) {
+        return moment(event.start).isAfter(today, 'day');
+    });
+    $('#upcomingBookings').text(upcomingEvents.length);
     
+    // Total revenue
     var totalRevenue = events.reduce(function(sum, event) {
-        return sum + (parseFloat(event.total_amount) || 0);
+        return sum + (parseFloat(event.net_amount) || 0);
     }, 0);
     $('#totalRevenue').text('₹' + totalRevenue.toLocaleString('en-IN'));
+    
+    // Upcoming revenue
+    var totalUpcomingRevenue = upcomingEvents.reduce(function(sum, event) {
+        return sum + (parseFloat(event.net_amount) || 0);
+    }, 0);
+    $('#totalUpcomingRevenue').text('₹' + totalUpcomingRevenue.toLocaleString('en-IN'));
+
+    // Today revenue (optional)
+    var totalTodayRevenue = todayEvents.reduce(function(sum, event) {
+        return sum + (parseFloat(event.net_amount) || 0);
+    }, 0);
+    $('#totalTodayRevenue').text('₹' + totalTodayRevenue.toLocaleString('en-IN'));
 }
+
 
         });
     </script>
-{{-- </body>
-</html> --}}
 @endsection

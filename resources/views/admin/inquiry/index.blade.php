@@ -41,7 +41,7 @@
 										<table id="copy-print-csv" class="table custom-table">
 											<thead>
 												<tr>
-												  <th>Unique Id</th>
+												  <th>S/No.</th>
 												  <th>Client Name</th>
 												  <th>Unique id</th>
 												  <th>Phone No</th>
@@ -62,7 +62,7 @@
  
 													@endphp
 													<tr>
-													 	<td>{{ $inv->unique_id ?? '' }} </td>
+													 	<td>{{ $loop->iteration}} </td>
 													 	<td>{{ $inv->customer->company_name ?? '' }}</td>
 													 	<td>{{ $inv->unique_id }}</td>
 													 	<td>{{ $contact_person ? $contact_person_mobile[$inv->contact_person_c] ?? $contact_person_mobile[0] : 'Something Wrong' }}</td>
