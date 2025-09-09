@@ -16,6 +16,8 @@ use App\Models\PerformaInvoiceChallan;
 use App\Models\Inquiry;
 use Carbon\Carbon;
 use App\Models\LeadStatusLog;
+use Illuminate\Support\Facades\DB;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 
 class AdminController extends Controller
@@ -90,6 +92,16 @@ class AdminController extends Controller
         return response()->json(['error' => false, 'data' => $data]);
     }
 
+     private function formatIndianCurrency($amount)
+    {
+        if ($amount >= 10000000) {
+            return '₹' . round($amount / 10000000, 2) . ' Cr';
+        } elseif ($amount >= 100000) {
+            return '₹' . round($amount / 100000, 2) . ' Lakh';
+        } else {
+            return '₹' . number_format($amount);
+        }
+    }
 
     // public function home(){
     //     $title = 'Dashboard';
@@ -114,6 +126,22 @@ class AdminController extends Controller
         $challanCount   = PerformaInvoiceChallan::count(); 
         $challanTotal   = PerformaInvoiceChallan::sum('total_amount');
         $latestInquiries = Inquiry::with(['customer','address'])->orderBy('id','DESC')->limit(5)->get();
+
+      $overallGP = DB::table('invoices')
+        ->join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+        ->join('items', 'invoice_items.item_id', '=', 'items.id')
+        ->selectRaw('
+            SUM((invoice_items.gross_amount * items.profit_margin) / 100) as total_gp,
+            SUM(invoice_items.gross_amount) as total_sales
+        ')
+        ->first();
+
+        $overallGPValue = $overallGP->total_gp ?? 0;
+        $overallSales   = $overallGP->total_sales ?? 0;
+        $overallGPPercent = $overallSales > 0 
+            ? round(($overallGPValue / $overallSales) * 100, 1) 
+            : 0;
+    // dd($overallGPPercent);
 
         $latestBooking = Booking::with(['customerType', 'inquiry', 'quotaiton.occasion', 'bookingItem'])
         ->where('billing_date', '>', $currentDate)
@@ -194,29 +222,48 @@ class AdminController extends Controller
             'percent' => $totalInquiries > 0 ? round(($qty / $totalInquiries) * 100, 1) : 0,
         ];
     }
+
+
     // ===== Total Business Data (Sales per Month) =====
-        $ttBusinessData = Invoice::selectRaw('MONTH(created_at) as month, SUM(total_amount) as total')
-            ->groupBy('month')
-            ->orderBy('month')
+  
+    // Monthly Sales (Gross Amount)
+       $ttBusinessData = \DB::table('invoices')
+            ->join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+            ->selectRaw('MONTH(invoices.created_at) as month, SUM(invoice_items.gross_amount) as total')
+            ->groupBy(\DB::raw('MONTH(invoices.created_at)'))
+            ->orderBy(\DB::raw('MONTH(invoices.created_at)'))
             ->pluck('total', 'month')
             ->toArray();
 
-    // Ensure 12 months filled
+        // Ensure 12 months filled
         $ttBusinessData = array_replace(array_fill(1, 12, 0), $ttBusinessData);
         $ttBusinessData = array_values($ttBusinessData);
 
-        // ===== GP % Data (Example using net_amount vs total_amount) =====
-        $gpPercentData = Invoice::selectRaw('MONTH(created_at) as month, 
-                (SUM(net_amount) / NULLIF(SUM(total_amount), 0)) * 100 as gp_percent')
-            ->groupBy('month')
-            ->orderBy('month')
-            ->pluck('gp_percent', 'month')
+        // Monthly GP (absolute value)
+        $monthlyGP = \DB::table('invoices')
+            ->join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+            ->join('items', 'invoice_items.item_id', '=', 'items.id')
+            ->selectRaw('MONTH(invoices.created_at) as month, SUM((invoice_items.gross_amount * items.profit_margin) / 100) as total_gp')
+            ->groupBy(\DB::raw('MONTH(invoices.created_at)'))
+            ->orderBy(\DB::raw('MONTH(invoices.created_at)'))
+            ->pluck('total_gp', 'month')
             ->toArray();
 
-        // Ensure 12 months filled
-        $gpPercentData = array_replace(array_fill(1, 12, 0), $gpPercentData);
-        $gpPercentData = array_map(fn($v) => round($v, 1), $gpPercentData);
-        $gpPercentData = array_values($gpPercentData);
+
+        $monthlyGP = array_replace(array_fill(1, 12, 0), $monthlyGP);
+        $monthlyGP = array_values($monthlyGP);
+
+        // Monthly GP % (based on above)
+        $gpPercentData = [];
+        foreach (range(1, 12) as $i) {
+            $sales = $ttBusinessData[$i - 1] ?? 0;
+            $gp    = $monthlyGP[$i - 1] ?? 0;
+
+            $gpPercentData[] = $sales > 0 ? round(($gp / $sales) * 100, 1) : 0;
+        }
+
+
+         $overallGPValueFormatted = $this->formatIndianCurrency($overallGPValue);
 
         // Pass everything to view
         return view(_template('dashboard.index'), compact(
@@ -238,10 +285,18 @@ class AdminController extends Controller
             'lossBusinessFinal',
             'totalInquiries',
             'latestInquiries',
-            'latestBooking'
+            'latestBooking',
+            'overallGPValue',
+            'overallGPPercent',
+            'overallSales',
+            'overallGPValueFormatted'
         ));
     }
 
+
+
+
+    
     public function filterChart(Request $request){
         $chartType = $request->input('chartType');
         $month = $request->input('month');
@@ -402,36 +457,52 @@ class AdminController extends Controller
             return response()->json($lossBusinessFinal);
                 
             case 'financial':
-                $ttBusinessQuery = Invoice::selectRaw('MONTH(created_at) as month, SUM(total_amount) as total');
-                $gpPercentQuery = Invoice::selectRaw('MONTH(created_at) as month, 
-                    (SUM(net_amount) / NULLIF(SUM(total_amount), 0)) * 100 as gp_percent');
-                    
+                // Total Business (Sales)
+                $ttBusinessQuery = Invoice::join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+                    ->selectRaw('MONTH(invoices.created_at) as month, SUM(invoice_items.gross_amount) as total');
+
+                // GP Value
+                $gpValueQuery = Invoice::join('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
+                    ->join('items', 'invoice_items.item_id', '=', 'items.id')
+                    ->selectRaw('MONTH(invoices.created_at) as month, SUM((invoice_items.gross_amount * items.profit_margin) / 100) as gp_value');
+
                 if (!empty($year)) {
-                    $ttBusinessQuery->whereYear('created_at', $year);
-                    $gpPercentQuery->whereYear('created_at', $year);
+                    $ttBusinessQuery->whereYear('invoices.created_at', $year);
+                    $gpValueQuery->whereYear('invoices.created_at', $year);
                 }
-                
-                $ttBusinessData = $ttBusinessQuery->groupBy('month')
-                    ->orderBy('month')
+
+                // Sales data
+                $ttBusinessData = $ttBusinessQuery->groupBy(\DB::raw('MONTH(invoices.created_at)'))
+                    ->orderBy(\DB::raw('MONTH(invoices.created_at)'))
                     ->pluck('total', 'month')
                     ->toArray();
-                    
-                $gpPercentData = $gpPercentQuery->groupBy('month')
-                    ->orderBy('month')
-                    ->pluck('gp_percent', 'month')
+
+                // GP Value data
+                $gpValueData = $gpValueQuery->groupBy(\DB::raw('MONTH(invoices.created_at)'))
+                    ->orderBy(\DB::raw('MONTH(invoices.created_at)'))
+                    ->pluck('gp_value', 'month')
                     ->toArray();
-                    
-                // Ensure 12 months filled
+
+                // Fill missing months
                 $ttBusinessData = array_replace(array_fill(1, 12, 0), $ttBusinessData);
                 $ttBusinessData = array_values($ttBusinessData);
-                
-                $gpPercentData = array_replace(array_fill(1, 12, 0), $gpPercentData);
-                $gpPercentData = array_map(fn($v) => round($v, 1), $gpPercentData);
-                $gpPercentData = array_values($gpPercentData);
-                
+
+                $gpValueData = array_replace(array_fill(1, 12, 0), $gpValueData);
+                $gpValueData = array_values($gpValueData);
+
+                // GP % calculation
+                $gpPercentData = [];
+                foreach (range(1, 12) as $i) {
+                    $sales = $ttBusinessData[$i - 1] ?? 0;
+                    $gp    = $gpValueData[$i - 1] ?? 0;
+
+                    $gpPercentData[] = $sales > 0 ? round(($gp / $sales) * 100, 1) : 0;
+                }
+
                 return response()->json([
                     'ttBusinessData' => $ttBusinessData,
-                    'gpPercentData' => $gpPercentData
+                    'gpValueData'    => $gpValueData,
+                    'gpPercentData'  => $gpPercentData,
                 ]);
                 
             default:
@@ -440,86 +511,136 @@ class AdminController extends Controller
     }
 
 
-//    public function search(Request $request)
-// {
-//     $term = $request->input('search');
 
-//     // ===== Inquiries =====
-//     $inquiries = Inquiry::with(['customer','leadstatus'])
-//         ->whereHas('customer', fn($q) => $q->where('company_name', 'like', "%$term%"))
-//         ->orWhere('unique_id', 'like', "%$term%")
-//         ->get()
-//         ->map(function ($item) {
-//             return [
-//                 'type'      => 'Inquiry',
-//                 'client'    => $item->customer->company_name ?? '',
-//                 'unique_id' => $item->unique_id,
-//                 'phone'     => $item->customer->mobile ?? '',
-//                 'email'     => $item->customer->email ?? '',
-//                 'whatsapp'  => $item->customer->cwhatsapp ?? '',
-//                 'status'    => $item->leadstatus->status ?? '',
-//                 'id'        => $item->id,
-//                 'edit_url'  => route('inquiry.edit', $item->id), // ✅ Laravel route
-//             ];
-//         });
+public function summaryDetails(Request $request)
+{
+    $type = $request->input('type'); // Inquiry, P.I., Bookings, Invoices, Challans
+    $month = $request->input('month');
+    $year  = $request->input('year');
 
-//     // ===== Bookings =====
-//     $bookings = Booking::with(['customerType'])
-//         ->where('invoice_no', 'like', "%$term%")
-//         ->orWhere('id', 'like', "%$term%")
-//         ->get()
-//         ->map(function ($item) {
-//             return [
-//                 'type'      => 'Booking',
-//                 'client'    => $item->customerType->company_name ?? '',
-//                 'unique_id' => $item->invoice_no,
-//                 'phone'     => $item->customerType->mobile ?? '',
-//                 'email'     => $item->customerType->email ?? '',
-//                 'whatsapp'  => '',
-//                 'status'    => 'N/A',
-//                 'id'        => $item->id,
-//                 'edit_url'  => route('booking.edit', $item->id), // ✅
-//             ];
-//         });
+    switch ($type) {
+        case 'Inquiry':
+            $query = Inquiry::with('customer');
+            break;
+        case 'P.I.':
+            $query = Quotation::with(['quotationItem','customerType']);
+            break;
+        case 'Bookings':
+            $query = Booking::with(['bookingItem','customerType']);
+            break;
+        case 'Invoices':
+            $query = Invoice::with('customerType');
+            break;
+        case 'Challans':
+            $query = PerformaInvoiceChallan::with('customerType');
+            break;
+        default:
+            return response()->json([], 400);
+    }
 
-//     // ===== Quotations =====
-//     $quotations = Quotation::with(['customer'])
-//         ->where('invoice_no', 'like', "%$term%")
-//         ->get()
-//         ->map(function ($item) {
-//             return [
-//                 'type'      => 'Quotation',
-//                 'client'    => $item->customer->company_name ?? '',
-//                 'unique_id' => $item->invoice_no,
-//                 'phone'     => $item->customer->mobile ?? '',
-//                 'email'     => $item->customer->email ?? '',
-//                 'whatsapp'  => '',
-//                 'status'    => 'N/A',
-//                 'id'        => $item->id,
-//                 'edit_url'  => route('quotation.edit', $item->id), // ✅
-//             ];
-//         });
+    if ($month) $query->whereMonth('created_at', $month);
+    if ($year)  $query->whereYear('created_at', $year);
 
-//     $results = $inquiries->merge($bookings)->merge($quotations);
+    $rows = $query->get()->map(function($item) use ($type) {
 
-//     return response()->json($results);
-// }
+         $customer = json_decode($item->customer_details, true) ?? [];
+            $company = $customer['company_name'] ?? '';
+            $poc = $customer['contact_person_c'] ?? '';
+
+      
+
+        $uniqueId = $item->unique_id ?? ($item->quotation_no ?? ($item->booking_no ?? ($item->invoice_no ?? '')));
+
+        // Optional: edit/view URL per type
+        switch($type){
+            case 'Inquiry': $editUrl = route('inquiry.edit', $item->id); break;
+            case 'P.I.': $editUrl = route('quotation.edit', $item->id); break;
+            case 'Bookings': $editUrl = route('booking.edit', $item->id); break;
+            case 'Invoices': $editUrl = route('invoice.edit', $item->id); break;
+            case 'Challans': $editUrl = route('challan.edit', $item->id); break;
+            default: $editUrl = '#';
+        }
+
+        return [
+            'id'        => $item->id,
+            'type'      => $type,
+            'client'    => $customer['company_name'] ?? '',
+            'unique_id' => $uniqueId,
+            'phone'     => $customer['cmobile'] ?? $item->phone ?? '',
+            'poc'       => $customer['contact_person_c'] ?? '',
+            'email'     => $customer['cemail'] ?? $item->email ?? '',
+            'whatsapp'  => $customer['cwhatsapp'] ?? '',
+            'edit_url'  => $editUrl,
+        ];
+    });
+
+    return response()->json($rows);
+}
+
+public function exportSummary(Request $request)
+{
+    $type  = $request->input('type');   
+    $month = $request->input('month');
+    $year  = $request->input('year');
+
+    switch ($type) {
+        case 'Inquiry': $query = Inquiry::with('customer'); break;
+        case 'P.I.': $query = Quotation::with(['quotationItem','customerType']); break;
+        case 'Bookings': $query = Booking::with(['bookingItem','customerType']); break;
+        case 'Invoices': $query = Invoice::with('customerType'); break;
+        case 'Challans': $query = PerformaInvoiceChallan::with('customerType'); break;
+        default: return back()->with('error','Invalid type');
+    }
+
+    if ($month) $query->whereMonth('created_at', $month);
+    if ($year)  $query->whereYear('created_at', $year);
+
+    $rows = $query->get()->map(function($item) use ($type) {
+        $customer = json_decode($item->customer_details, true) ?? [];
+        $uniqueId = $item->unique_id ?? ($item->quotation_no ?? ($item->booking_no ?? ($item->invoice_no ?? '')));
+        return [
+            'Type'       => $type,
+            'Client'     => $customer['company_name'] ?? '',
+            'POC'        => $customer['contact_person_c'] ?? '',
+            'Unique ID'  => $uniqueId,
+            'Phone'      => $customer['cmobile'] ?? $item->phone ?? '',
+            'Email'      => $customer['cemail'] ?? $item->email ?? '',
+            'Whatsapp'   => $customer['cwhatsapp'] ?? '',
+        ];
+    });
+
+    $filename = $type.'_summary_'.now()->format('Y-m-d_H-i').'.xlsx';
+
+    return (new FastExcel($rows))->download($filename);
+}
+
+
 
 public function search(Request $request)
 {
-    $term = $request->input('search');
+    $term = trim($request->input('search'));
 
     // ===== Inquiries =====
     $inquiries = Inquiry::query()
-        ->where('unique_id', 'like', "%$term%")
-        ->orWhere('customer_details->company_name', 'like', "%$term%")
-        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
-        ->orWhere('email', 'like', "%$term%")
-        ->orWhere('phone', 'like', "%$term%")
+        ->where(function ($q) use ($term) {
+            $q->where('unique_id', 'like', "%{$term}%")
+              ->orWhere('email', 'like', "%{$term}%")
+              ->orWhere('phone', 'like', "%{$term}%");
+        })
         ->get()
+        ->filter(function($item) use ($term) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+            $company = $customer['company_name'] ?? '';
+            $poc = $customer['contact_person_c'] ?? '';
+
+            return stripos($company, $term) !== false ||
+                   stripos($poc, $term) !== false ||
+                   stripos($item->unique_id, $term) !== false ||
+                   stripos($item->email, $term) !== false ||
+                   stripos($item->phone, $term) !== false;
+        })
         ->map(function ($item) {
             $customer = json_decode($item->customer_details, true) ?? [];
-
             return [
                 'type'      => 'Inquiry',
                 'client'    => $customer['company_name'] ?? '',
@@ -534,16 +655,25 @@ public function search(Request $request)
             ];
         });
 
+    $inquiries = collect($inquiries);
+
     // ===== Bookings =====
     $bookings = Booking::query()
-        ->where('invoice_no', 'like', "%$term%")
-        ->orWhere('id', 'like', "%$term%")
-        ->orWhere('customer_details->company_name', 'like', "%$term%")
-        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
+        ->where('invoice_no', 'like', "%{$term}%")
+        ->orWhere('id', 'like', "%{$term}%")
         ->get()
+        ->filter(function($item) use ($term) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+            $company = $customer['company_name'] ?? '';
+            $poc = $customer['contact_person_c'] ?? '';
+
+            return stripos($company, $term) !== false ||
+                   stripos($poc, $term) !== false ||
+                   stripos($item->invoice_no, $term) !== false ||
+                   stripos((string)$item->id, $term) !== false;
+        })
         ->map(function ($item) {
             $customer = json_decode($item->customer_details, true) ?? [];
-
             return [
                 'type'      => 'Booking',
                 'client'    => $customer['company_name'] ?? '',
@@ -558,15 +688,23 @@ public function search(Request $request)
             ];
         });
 
+    $bookings = collect($bookings);
+
     // ===== Quotations =====
     $quotations = Quotation::query()
-        ->where('invoice_no', 'like', "%$term%")
-        ->orWhere('customer_details->company_name', 'like', "%$term%")
-        ->orWhere('customer_details->contact_person_c', 'like', "%$term%")
+        ->where('invoice_no', 'like', "%{$term}%")
         ->get()
+        ->filter(function($item) use ($term) {
+            $customer = json_decode($item->customer_details, true) ?? [];
+            $company = $customer['company_name'] ?? '';
+            $poc = $customer['contact_person_c'] ?? '';
+
+            return stripos($company, $term) !== false ||
+                   stripos($poc, $term) !== false ||
+                   stripos($item->invoice_no, $term) !== false;
+        })
         ->map(function ($item) {
             $customer = json_decode($item->customer_details, true) ?? [];
-
             return [
                 'type'      => 'Quotation',
                 'client'    => $customer['company_name'] ?? '',
@@ -581,9 +719,12 @@ public function search(Request $request)
             ];
         });
 
+    $quotations = collect($quotations);
+
+    // ===== Merge all collections =====
     $results = $inquiries->merge($bookings)->merge($quotations);
 
-    return response()->json($results);
+    return response()->json($results->values());
 }
 
 

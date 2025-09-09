@@ -40,7 +40,7 @@
                                 <th>Type</th>
                                 <th>Client</th>
                                 <th>POC</th>
-                                <th>Unique ID</th>
+                                <th>Unique ID/Invoice No</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Whatsapp</th>
@@ -121,12 +121,11 @@
                         </a>
                     </div>
                     <div class="col-md-4 col-lg">
-
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <p class="text-muted mb-1">Total Gross Profit</p>
-                                <h3 class="fw-bold mb-0">₹96.3L</h3>
-                                <small class="text-muted"><span class="text-success">45.33%</span> Avg. GP</small>
+                                <h3 class="fw-bold mb-0">{{ $overallGPValueFormatted }}</h3>
+                                <small class="text-muted"><span class="text-success">{{ $overallGPPercent }}%</span> Avg. GP</small>
                             </div>
                         </div>
 
@@ -254,134 +253,7 @@
 
 
                 <!-- Tables Section -->
-                <div class="row g-3">
-                    {{-- <div class="col-xl-12">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h5 class="mb-0">Finds Values</h5>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>S/No.</th>
-                                            <th>Type</th>
-                                            <th>Client Name</th>
-                                            <th>Unique id</th>
-                                            <th>Phone No</th>
-                                            <th>Email</th>
-                                            <th>Whatsapp</th>
-                                            <th>Lead Status</th>
-                                            <th colspan="2">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($latestInquiries && count($latestInquiries) > 0)
-                                            @foreach ($latestInquiries as $inv)
-                                                @php
-                                                    $customer = json_decode($inv->customer_details, true);
-
-                                                    $contact_person = $inv->customer
-                                                        ? json_decode($inv->customer->contact_person_name, true)
-                                                        : false;
-                                                    $contact_person_mobile = $inv->customer
-                                                        ? json_decode($inv->customer->mobile, true)
-                                                        : false;
-
-                                                @endphp
-                                                <tr>
-                                                    <td>{{ $loop->iteration }} </td>
-                                                    <td>{{ $inv->customer->company_name ?? '' }}</td>
-                                                    <td>{{ }}</td>
-                                                    <td>{{ $inv->unique_id }}</td>
-                                                    <td>{{ $contact_person ? $contact_person_mobile[$inv->contact_person_c] ?? $contact_person_mobile[0] : 'Something Wrong' }}
-                                                    </td>
-                                                    <td>{{ $inv->customer ? $inv->customer->email : 'Something Wrong' }}
-                                                    </td>
-                                                    <td>{{ $inv->customer->cwhatsapp ?? '' }}</td>
-                                                    <td>{{ $inv->leadstatus ? $inv->leadstatus->status : '' }}</td>
-                                                    <td colspan="3">
-                                                        <a href="{{ route('inquiry.edit', ['inquiry' => $inv->id]) }}"
-                                                            class="badge badge-success">Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-xl-12">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h5 class="mb-0">Upcoming Events</h5>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>S.No.</th>
-                                            <th>Booking No</th>
-                                            <th>Quotation Id</th>
-                                            <th>Client</th>
-                                            <th>POC</th>
-                                            <th>Mobile</th>
-                                            <th>Booking Date</th>
-                                            <th>Readyness</th>
-                                            <th>Venue</th>
-                                            <th>Occassion</th>
-                                            <th>Total Amount</th>
-                                            <th colspan="2">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($latestBooking && count($latestBooking) > 0)
-                                            @foreach ($latestBooking as $inv)
-                                                @php
-                                                    $customer_details = json_decode($inv->customer_details, true);
-                                                    $venue_details = json_decode($inv->delivery_details, true);
-                                                @endphp
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $inv->invoice_no }}</td>
-                                                    <td>{{ $inv->quotaiton->invoice_no ?? '' }}</td>
-                                                    <td>{{ $customer_details['company_name'] ?? '' }}</td>
-                                                    <td>{{ is_numeric($customer_details['contact_person_c']) ? $customer_details['select_two_name'] ?? '' : $customer_details['contact_person_c'] }}
-                                                    </td>
-                                                    <td>
-
-                                                        {{ $customer_details['cmobile'] ?? '' }}</td>
-                                                    <td>{{ date('d-m-Y', strtotime($inv->billing_date)) }}</td>
-                                                    <td>{{ $customer_details['creadyness'] ?? '' }}</td>
-                                                    <td>{{ $venue_details['dvenue_name'] ?? '' }}</td>
-                                                    <td>{{ $inv->quotaiton->occasion->occasion ?? '' }}</td>
-
-
-                                                    <td>{{ $inv->total_amount }}</td>
-                                                    <td colspan="3">
-
-                                                        <a href="{{ route('booking.print', ['id' => $inv->id]) }}"
-                                                            class="badge badge-info">Print
-                                                        </a>
-                                                        <a href="{{ route('booking.email', ['id' => $inv->id]) }}"
-                                                            class="badge badge-success">Email Booking
-                                                        </a>
-                                                        <a href="{{ route('booking.edit', ['booking' => $inv->id]) }}"
-                                                            class="badge badge-primary">Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div> --}}
+                <div class="row g-3"> 
                 </div>
                 <div class="modal fade" id="searchModal" tabindex="-1">
                     <div class="modal-dialog modal-xl">
@@ -415,7 +287,90 @@
             </main>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="modal fade" id="summaryModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h5 class="modal-title" id="summaryModalLabel">Details</h5>
+        <div style="display: flex; gap: 10px;">
+            <button type="button" 
+                    id="exportExcelBtn" 
+                    style="background-color: white; color: black; border: none; padding: 5px 10px; border-radius: 6px; font-weight: 500; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 5px;" title="Export">
+                <i class="bi bi-download"></i>
+            </button>
+            <button type="button" class="btn-close" id="summaryModalClose" aria-label="Close" title="Close">X</button>
+        </div>
+    </div>
+
+
+
+      <div class="modal-body">
+        <table class="table table-striped" id="summaryChartTable">
+          <thead>
+            <tr>
+              <th>S/No</th>
+              <th>Type</th>
+              <th>Client</th>
+              <th>POC</th>
+              <th>Unique ID</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Whatsapp</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="summaryChartResults"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="leadStatusModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h5 class="modal-title" id="leadStatusModalLabel">Details</h5>
+        <div style="display: flex; gap: 10px;">
+            <button type="button" 
+                    id="leadStatusexportExcelBtn" 
+                    style="background-color: white; color: black; border: none; padding: 5px 10px; border-radius: 6px; font-weight: 500; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 5px;" title="Export">
+                <i class="bi bi-download"></i>
+            </button>
+            <button type="button" class="btn-close" id="leadStatusModalClose" aria-label="Close" title="Close">X</button>
+        </div>
+    </div>
+
+
+
+      <div class="modal-body">
+        <table class="table table-striped" id="leadStatusChartTable">
+          <thead>
+            <tr>
+              <th>S/No</th>
+              <th>Type</th>
+              <th>Client</th>
+              <th>POC</th>
+              <th>Unique ID</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Whatsapp</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="leadStatusChartResults"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <script>
         const base_url = "{{ config('app.url') }}";
@@ -450,6 +405,67 @@
                         },
                     }
                 }
+            });
+
+
+              // ===== Bootstrap Modal Instance =====
+               
+                const leadStatusModalEl = document.getElementById('leadStatusModal');
+                const leadStatusModal = new bootstrap.Modal(leadStatusModalEl);
+
+                // ===== Click on Chart Slice =====
+                document.getElementById('leadStatusChart').onclick = function(evt) {
+                    const activePoints = leadStatusChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                    if (!activePoints.length) return;
+
+                    const index = activePoints[0].index;
+                    const key = Object.keys(leadStatusData)[index];
+
+                    // Filters
+                    const month = document.getElementById('leadStatusMonth')?.value || '';
+                    const year  = document.getElementById('leadStatusYear')?.value || '';
+
+                    fetch(`${base_url}/admin/dashboard/leadStatus-details?type=${encodeURIComponent(key)}&month=${month}&year=${year}`)
+                        .then(res => res.json())
+                        .then(rows => {
+                            let html = '';
+                            rows.forEach((row, i) => {
+                                html += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${row.type}</td>
+                                        <td>${row.client}</td>
+                                        <td>${row.poc}</td>
+                                        <td>${row.unique_id}</td>
+                                        <td>${row.phone}</td>
+                                        <td>${row.email}</td>
+                                        <td>${row.whatsapp}</td>
+                                        <td><a href="${row.edit_url}" class="btn btn-sm btn-primary">Edit</a></td>
+                                    </tr>
+                                `;
+                            });
+                            document.getElementById('leadStatusChartResults').innerHTML = html;
+                            document.getElementById('leadStatusModalLabel').textContent = `${key} Details`;
+                            summaryModal.show();
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert("Failed to load details. Please try again.");
+                        });
+                };
+
+                // Close modal button
+                document.getElementById('leadStatusModalClose')?.addEventListener('click', () => {
+                    summaryModal.hide();
+                });
+
+                document.getElementById('leadStatusexportExcelBtn').addEventListener('click', () => {
+                const type  = document.getElementById('leadStatusModalLabel').textContent.split(' Details')[0];
+                const month = document.getElementById('leadStatusMonth')?.value || '';
+                const year  = document.getElementById('leadStatusYear')?.value || '';
+
+                const url = `${base_url}/admin/dashboard/leadStatus-export?type=${encodeURIComponent(type)}&month=${month}&year=${year}`;
+                window.open(url, '_blank'); 
             });
 
             // Financial Performance Chart (Bar & Line)
@@ -516,6 +532,10 @@
                 }
             });
 
+           
+
+
+
 
             //Summary Chart
             const summaryData = @json($summary);
@@ -572,6 +592,68 @@
                 }
 
             });
+   
+                // ===== Bootstrap Modal Instance =====
+               
+                const summaryModalEl = document.getElementById('summaryModal');
+                const summaryModal = new bootstrap.Modal(summaryModalEl);
+
+                // ===== Click on Chart Slice =====
+                document.getElementById('summaryChart').onclick = function(evt) {
+                    const activePoints = summaryChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                    if (!activePoints.length) return;
+
+                    const index = activePoints[0].index;
+                    const key = Object.keys(summaryData)[index];
+
+                    // Filters
+                    const month = document.getElementById('summaryMonth')?.value || '';
+                    const year  = document.getElementById('summaryYear')?.value || '';
+
+                    fetch(`${base_url}/admin/dashboard/summary-details?type=${encodeURIComponent(key)}&month=${month}&year=${year}`)
+                        .then(res => res.json())
+                        .then(rows => {
+                            let html = '';
+                            rows.forEach((row, i) => {
+                                html += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${row.type}</td>
+                                        <td>${row.client}</td>
+                                        <td>${row.poc}</td>
+                                        <td>${row.unique_id}</td>
+                                        <td>${row.phone}</td>
+                                        <td>${row.email}</td>
+                                        <td>${row.whatsapp}</td>
+                                        <td><a href="${row.edit_url}" class="btn btn-sm btn-primary">Edit</a></td>
+                                    </tr>
+                                `;
+                            });
+                            document.getElementById('summaryChartResults').innerHTML = html;
+                            document.getElementById('summaryModalLabel').textContent = `${key} Details`;
+                            summaryModal.show();
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert("Failed to load details. Please try again.");
+                        });
+                };
+
+                // Close modal button
+                document.getElementById('summaryModalClose')?.addEventListener('click', () => {
+                    summaryModal.hide();
+                });
+
+                document.getElementById('exportExcelBtn').addEventListener('click', () => {
+                const type  = document.getElementById('summaryModalLabel').textContent.split(' Details')[0];
+                const month = document.getElementById('summaryMonth')?.value || '';
+                const year  = document.getElementById('summaryYear')?.value || '';
+
+                const url = `${base_url}/admin/dashboard/summary-export?type=${encodeURIComponent(type)}&month=${month}&year=${year}`;
+                window.open(url, '_blank'); 
+            });
+
+
 
             // Business Loss Chart
             const lossBusinessLabels = @json(array_column($lossBusinessFinal, 'head'));

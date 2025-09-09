@@ -74,6 +74,10 @@ Route::middleware([Admin::class])->prefix('admin')->group(function () {
 	    Route::get('home',[AdminController::class,'home'])->name('admin.home');
 		Route::get('dashboard/filter-chart', [AdminController::class, 'filterChart'])->name('dashboard.filter-chart');
 		Route::get('/dashboard/search', [AdminController::class, 'search'])->name('dashboard.search');
+		Route::get('/dashboard/summary-details', [AdminController::class, 'summaryDetails'])->name('dashboard.summary-details');
+        Route::get('/dashboard/summary-export', [AdminController::class, 'exportSummary'])->name('summary.export');
+		Route::get('/dashboard/leadStatus-details', [AdminController::class, 'leadStatusDetails'])->name('dashboard.leadStatus-details');
+        Route::get('/dashboard/leadStatus-export', [AdminController::class, 'leadStatusSummary'])->name('leadStatus.export');
 
 
 	    Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
