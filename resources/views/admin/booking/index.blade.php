@@ -19,20 +19,24 @@
 										<table id="copy-print-csv" class="table custom-table">
 											<thead>
 												<tr>
-													<th>S.No.</th>
+												<th>S.No.</th>
 												  <th>Booking No</th>
 												  <th>Quotation Id</th>
-												  <th>Client Name</th>
-												  <th>Contact Person Name</th>
-												  <th>Mobile</th>
-												  <th>Booking Date</th>
-												 	<th>Readyness</th>
+												  <th>Client</th>
+												  <th>POC</th>
+												  <th>Mobile</th>												  
+												  <th>Duration</th>
 												  <th>Venue</th>
-												  <th>Occassion</th>
-												  
+												  <th>City</th>
+												  <th>Readyness</th>
+												  <th>Ticket Size</th>												
 												  <th>Total Amount</th>
-												  <th>Items</th>
+												  <th>GP</th>
 												  <th colspan="2">Action</th>
+												{{-- <th>Booking Date</th> --}}
+												{{-- <th>Items</th> --}}
+												{{-- <th>Occassion</th> --}}
+												
 												</tr>
 											</thead>
 											<tbody>
@@ -52,18 +56,21 @@
 													 	<td>
 													 		
 													 	{{ $customer_details['cmobile'] ?? '' }}</td>
-													 	<td>{{ date('d-m-Y',strtotime($inv->billing_date))}}</td>
-													 	<td>{{ $customer_details['creadyness'] ?? '' }}</td>
+														<td></td>
+													 	{{-- <td>{{ date('d-m-Y',strtotime($inv->billing_date))}}</td> --}}
 													 	<td>{{ $venue_details['dvenue_name'] ?? '' }}</td>
-													 	<td>{{ $inv->quotaiton->occasion->occasion ?? '' }}</td>
+														<td>{{ $venue_details['dcity'] ?? '' }}</td>
+														<td>{{ $customer_details['creadyness'] ?? '' }}</td>
+													 	{{-- <td>{{ $inv->quotaiton->occasion->occasion ?? '' }}</td> --}}
 													 	
-													 
+													    <td></td>
 													 	<td>{{ $inv->total_amount  }}</td>
-												 		<td> 
+												 		{{-- <td> 
 													 		@foreach($inv->bookingItem  as $sinitem)
 													 				{{ $sinitem->item ?? '' }},
 													 		@endforeach
-													 	</td>
+													 	</td> --}}
+														<td>{{ number_format($inv->total_gp, 2) }}</td>
 													 	<td colspan="3">
 														{{--  	<a href="{{ route('booking.show',['booking'=>$inv->id]) }}" class="badge badge-success">Create Booking
 														 	</a>

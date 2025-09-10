@@ -442,7 +442,8 @@ thead tr td{
                           <br>
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
-                                <td rowspan="2" >HSN/SAC Code</td>
+                                <td rowspan="2" >SAC Code</td>
+                                <td rowspan="2" >HSN Code</td>
                                 <td rowspan="2" style=" width: 25%;">Description of Goods/Services</td>
                                 <td rowspan="2" style="width: 20%">Item</td>
                                 <td rowspan="2">Rate</td>
@@ -470,6 +471,7 @@ thead tr td{
                              <tbody class="main-td">
                                 <tr class=" item">
                                             <td class="space-" width="4%">{{ $count++  }}</td>
+                                             <td class="sac-" width="8%">{{ $invoice_item->sac_code ?? '' }}</td>
                                             <td class="hsn-" width="8%">{{ $invoice_item->hsn_code ?? '' }}</td>
                                            
                                             <td class="item-display" width="14%">{{ $invoice_item->description ?? '' }}</td>
@@ -496,7 +498,7 @@ thead tr td{
                         @endforeach
 
                             <tr class="center bottom-footer-tr">
-                             
+                              <td></td>
                                 <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
                                 <td colspan="3">Net Amount</td>
                                 <td id="display-gross-total-amount">{{ $invoice->net_amount }}
@@ -514,13 +516,13 @@ thead tr td{
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right; ">Amount in words :  </td>
-                                <td colspan="11" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">
+                                <td colspan="13" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">
                                     @if($invoice->total_amount == 0 ) Zero @else {{ getIndianCurrency($invoice->total_amount) }}@endif</span> 
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right; ">Remark :  </td>
-                                <td colspan="11" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">
+                                <td colspan="13" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">
                                     {{-- {{ ucfirst($invoice->amount_in_words) ?? '' }} --}}
                                     {{ $invoice->remark ?? '' }}
                                 </span></td>

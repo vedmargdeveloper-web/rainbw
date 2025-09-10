@@ -24,7 +24,16 @@ class BookingController extends Controller
      */
      public function index()
     {
-        $invoice = Booking::with(['customerType','inquiry','quotaiton.occasion','bookingItem'])->get();
+        $invoice = Booking::with(['customerType','inquiry','quotaiton.occasion','bookingItem'])
+         ->select('bookings.*')
+        ->selectSub(function ($query) {
+            $query->from('bookings_items as bi')
+                ->join('items as i', 'bi.item_id', '=', 'i.id')
+                ->selectRaw('SUM((bi.gross_amount * i.profit_margin) / 100)')
+                ->whereColumn('bi.invoice_id', 'bookings.id'); 
+        }, 'total_gp')
+        ->get();
+
         // dd($invoice);
         return view(_template('booking.index'),['invoices'=>$invoice,'title'=>'All Bookings']);
         //$this->fresh_quotations();

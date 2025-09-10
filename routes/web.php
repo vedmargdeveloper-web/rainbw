@@ -76,8 +76,15 @@ Route::middleware([Admin::class])->prefix('admin')->group(function () {
 		Route::get('/dashboard/search', [AdminController::class, 'search'])->name('dashboard.search');
 		Route::get('/dashboard/summary-details', [AdminController::class, 'summaryDetails'])->name('dashboard.summary-details');
         Route::get('/dashboard/summary-export', [AdminController::class, 'exportSummary'])->name('summary.export');
-		Route::get('/dashboard/leadStatus-details', [AdminController::class, 'leadStatusDetails'])->name('dashboard.leadStatus-details');
-        Route::get('/dashboard/leadStatus-export', [AdminController::class, 'leadStatusSummary'])->name('leadStatus.export');
+		Route::get('/dashboard/leadStatus-details', [AdminController::class, 'leadStatusDetails'])->name('dashboard.leadstatus.details');
+        Route::get('/dashboard/leadStatus-export', [AdminController::class, 'exportLeadStatus'])->name('dashboard.leadstatus.export');
+		Route::get('/dashboard/lossBusiness-details', [AdminController::class, 'lossBusinessDetails'])
+			->name('dashboard.lossBusiness.details');
+		Route::get('/financial-chart/export-csv', [AdminController::class,'exportFinancialChartCSV']);
+
+
+		Route::get('/dashboard/lossBusiness-export', [AdminController::class, 'lossBusinessExport'])
+			->name('dashboard.lossBusiness.export');
 
 
 	    Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
@@ -126,8 +133,8 @@ Route::middleware([Admin::class])->prefix('admin')->group(function () {
 		//  Route::resource('challan-type', ChallanTypeMasterController::class);
 		Route::get('/challan-type', [ChallanTypeMasterController::class, 'index'])->name('challan-type.index');
 		Route::post('/challan-type/store', [ChallanTypeMasterController::class, 'store'])->name('challan-type.store');
-	Route::get('/challan-type/edit/{id}', [ChallanTypeMasterController::class, 'edit'])->name('challan-type.edit');
-Route::patch('/challan-type/update/{id}', [ChallanTypeMasterController::class, 'update'])->name('challan-type.update');
+	    Route::get('/challan-type/edit/{id}', [ChallanTypeMasterController::class, 'edit'])->name('challan-type.edit');
+        Route::patch('/challan-type/update/{id}', [ChallanTypeMasterController::class, 'update'])->name('challan-type.update');
 		Route::delete('/challan-type/delete/{id}', [ChallanTypeMasterController::class, 'destroy'])->name('challan-type.destroy');
 
 	    Route::post('minor-heads', [VehicleHeadController::class,'minor_store'])->name('minorstore.store');
