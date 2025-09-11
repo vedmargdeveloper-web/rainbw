@@ -520,12 +520,33 @@ class AdminController extends Controller
             case 'Inquiry':
                 $query = Inquiry::with(['customer','leadstatus']);
                 break;
+            // case 'P.I.':
+            //     $query = Quotation::with(['quotationItem','customerType','occasion']);
+            //     break;
+            // case 'Bookings':
+            //     $query = Booking::with(['bookingItem','customerType','quotaiton.occasion']);
+            //     break;
             case 'P.I.':
-                $query = Quotation::with(['quotationItem','customerType','occasion']);
-                break;
-            case 'Bookings':
-                $query = Booking::with(['bookingItem','customerType','quotaiton.occasion']);
-                break;
+            $query = Quotation::with(['quotationItem','customerType','occasion'])
+                 ->select('quotations.*')
+                ->selectSub(function ($query) {
+                    $query->from('quotations_items as qi')
+                        ->join('items as i', 'qi.item_id', '=', 'i.id')
+                        ->selectRaw('SUM((qi.gross_amount * i.profit_margin) / 100)')
+                        ->whereColumn('qi.invoice_id', 'quotations.id');
+                }, 'total_gp');
+            break;
+
+        case 'Bookings':
+            $query = Booking::with(['bookingItem','customerType','quotaiton.occasion'])
+                ->select('bookings.*')
+                ->selectSub(function ($q) {
+                    $q->from('bookings_items as bi')
+                      ->join('items as i', 'bi.item_id', '=', 'i.id')
+                      ->selectRaw('SUM((bi.gross_amount * i.profit_margin) / 100)')
+                      ->whereColumn('bi.invoice_id', 'bookings.id');
+                }, 'total_gp');
+            break;
             case 'Invoices':
                 $query = Invoice::with('customerType');
                 break;
@@ -570,8 +591,8 @@ class AdminController extends Controller
                         'venue'        => $venue['dvenue_name'] ?? '',
                         'city'         => $venue['dcity'] ?? '',
                         'readyness'    => $customer['creadyness'] ?? '',
-                        'ticket_size'  => '', // add logic if required
-                        'gp'           => '', // add GP calculation logic
+                        'ticket_size'  => $item->net_amount, 
+                        'gp'           => $item->total_gp, 
                         'edit_url'     => route('quotation.edit', $item->id),
                     ];
 
@@ -588,7 +609,8 @@ class AdminController extends Controller
                         'readyness'   => $customer['creadyness'] ?? '',
                         'venue'       => $venue['dvenue_name'] ?? '',
                         'occasion'    => $item->quotaiton->occasion->occasion ?? '',
-                        'amount'      => $item->total_amount,
+                        'ticket_size' => $item->net_amount,
+                        'gp'           => $item->total_gp, 
                         'items'       => $item->bookingItem->pluck('item')->implode(', '),
                         'edit_url'    => route('booking.edit', $item->id),
                     ];
@@ -622,7 +644,7 @@ class AdminController extends Controller
             'columns' => match($type) {
                 'Inquiry'  => ['S/No.', 'Client Name', 'Unique ID', 'Phone No', 'Email', 'Whatsapp', 'Lead Status', 'Action'],
                 'P.I.'     => ['S/No.', 'Quotation Id', 'Client', 'POC', 'Mobile', 'Duration', 'Venue', 'City', 'Readyness', 'Ticket Size', 'GP', 'Action'],
-                'Bookings' => ['S/No.', 'Booking No', 'Quotation Id', 'Client Name', 'Contact Person', 'Mobile', 'Booking Date', 'Readyness', 'Venue', 'Occasion', 'Total Amount', 'Items', 'Action'],
+                'Bookings' => ['S/No.', 'Booking No', 'Quotation Id', 'Client Name', 'Contact Person', 'Mobile', 'Booking Date', 'Readyness', 'Venue', 'Occasion',  'Ticket Size', 'GP', 'Items', 'Action'],
                 'Invoices' => ['S/No.', 'Invoice No', 'Client', 'Amount', 'Date', 'Action'],
                 'Challans' => ['S/No.', 'Challan Type', 'Challan No', 'Ref PI No', 'Billing Date', 'Customer Type', 'Action'],
                 default    => []
@@ -645,14 +667,35 @@ class AdminController extends Controller
                 $columns = ['S/No.', 'Client Name', 'Unique ID', 'Phone No', 'Email', 'Whatsapp', 'Lead Status'];
                 break;
 
-            case 'P.I.':
-                $query = Quotation::with(['quotationItem','customerType','occasion']);
-                $columns = ['S/No.', 'Quotation Id', 'Client', 'POC', 'Mobile', 'Duration', 'Venue', 'City', 'Readyness', 'Ticket Size', 'GP'];
+            // case 'P.I.':
+            //     $query = Quotation::with(['quotationItem','customerType','occasion']);
+            //     $columns = ['S/No.', 'Quotation Id', 'Client', 'POC', 'Mobile', 'Duration', 'Venue', 'City', 'Readyness', 'Ticket Size', 'GP'];
+            //     break;
+
+            // case 'Bookings':
+            //     $query = Booking::with(['bookingItem','customerType','quotaiton.occasion']);
+            //     $columns = ['S/No.', 'Booking No', 'Quotation Id', 'Client Name', 'Contact Person', 'Mobile', 'Booking Date', 'Readyness', 'Venue', 'Occasion', 'Total Amount', 'Items'];
+            //     break;
+             case 'P.I.':
+                $query = Quotation::with(['quotationItem','customerType','occasion'])
+                    ->select('quotations.*')
+                    ->selectSub(function ($query) {
+                        $query->from('quotations_items as qi')
+                            ->join('items as i', 'qi.item_id', '=', 'i.id')
+                            ->selectRaw('SUM((qi.gross_amount * i.profit_margin) / 100)')
+                            ->whereColumn('qi.invoice_id', 'quotations.id');
+                    }, 'total_gp');
                 break;
 
             case 'Bookings':
-                $query = Booking::with(['bookingItem','customerType','quotaiton.occasion']);
-                $columns = ['S/No.', 'Booking No', 'Quotation Id', 'Client Name', 'Contact Person', 'Mobile', 'Booking Date', 'Readyness', 'Venue', 'Occasion', 'Total Amount', 'Items'];
+                $query = Booking::with(['bookingItem','customerType','quotaiton.occasion'])
+                    ->select('bookings.*')
+                    ->selectSub(function ($q) {
+                        $q->from('bookings_items as bi')
+                        ->join('items as i', 'bi.item_id', '=', 'i.id')
+                        ->selectRaw('SUM((bi.gross_amount * i.profit_margin) / 100)')
+                        ->whereColumn('bi.invoice_id', 'bookings.id');
+                    }, 'total_gp');
                 break;
 
             case 'Invoices':
@@ -704,8 +747,8 @@ class AdminController extends Controller
                         'Venue'        => $venue['dvenue_name'] ?? '',
                         'City'         => $venue['dcity'] ?? '',
                         'Readyness'    => $customer['creadyness'] ?? '',
-                        'Ticket Size'  => '',
-                        'GP'           => '',
+                        'Ticket Size'  => $item->net_amount,
+                        'gp'           => $item->total_gp, 
                     ];
 
                 case 'Bookings':
@@ -722,8 +765,11 @@ class AdminController extends Controller
                         'Readyness'   => $customer['creadyness'] ?? '',
                         'Venue'       => $venue['dvenue_name'] ?? '',
                         'Occasion'    => $item->quotaiton->occasion->occasion ?? '',
-                        'Total Amount'=> $item->total_amount,
+                        // 'Total Amount'=> $item->total_amount,
+                        'Ticket Size'  => $item->net_amount,
+                         'gp'           => $item->total_gp, 
                         'Items'       => $item->bookingItem->pluck('item')->implode(', '),
+                        
                     ];
 
                 case 'Invoices':

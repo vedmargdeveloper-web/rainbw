@@ -581,8 +581,9 @@
                             {{-- style="background: #ffa5d740;"  --}}
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
-                                <td rowspan="2" style="width: 75px;">HSN Code</td>
-                                <td rowspan="2" style=" width: 173px;">Description of Goods/Services</td>
+                                 <td rowspan="2" style="width: 50px;">SAC Code</td>
+                                <td rowspan="2" style="width: 65px;">HSN Code</td>
+                                <td rowspan="2" style=" width: 100px;">Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
                                 <td rowspan="2">Rate</td>
                                 <td rowspan="2">Qty</td>
@@ -608,6 +609,8 @@
                              @foreach($invoice_items as $invoice_item)
                         <tr class="center item">
                                     <td class="space"><span class="remove-btn">X</span></td>
+                                    <td class="sac">{{ $invoice_item->sac_code ?? '' }}</td>
+                                    <input type="hidden" class="psac" name="psac[]" value="{{ $invoice_item->sac_code ?? '' }}" />
                                     <td class="hsn">{{ $invoice_item->hsn_code ?? '' }}</td>
                                     <input type="hidden" class="phsn" name="phsn[]" value="{{ $invoice_item->hsn_code ?? '' }}" />
                                     <td class="item-display">{{ $invoice_item->description ?? '' }}</td>
@@ -649,7 +652,7 @@
                         @endforeach
 
                             <tr class="inser-div-before">
-                                <td colspan="13">
+                                <td colspan="15">
                                     <center>
                                         <a href="javascript:void(0)" id="add-more-btn" class="btn btn-primary">ADD ITEM</a>
                                     </center>
@@ -658,7 +661,7 @@
 
                             <tr class="center bottom-footer-tr">
                                 <td></td>
-                                <td colspan="3">Tax Payable on Rev. Charge Basis: NO</td>
+                                <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
                                 <td colspan="3">Net Amount</td>
                                 <td id="display-gross-total-amount">{{ $invoice->net_amount }}
                                 </td>
@@ -676,7 +679,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="text" value="{{ $invoice->amount_in_words }}" class="w-100" ></span></td>
+                                <td colspan="13"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="text" value="{{ $invoice->amount_in_words }}" class="w-100" ></span></td>
                             </tr>
                         
                         </tbody>
@@ -783,6 +786,8 @@
                     //alert('xd');
                              var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
                 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+

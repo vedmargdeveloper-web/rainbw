@@ -622,8 +622,9 @@
                             {{-- style="background: #ffa5d740;"  --}}
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
-                                <td rowspan="2" style="width: 20%;">HSN Code</td>
-                                <td rowspan="2" style=" width: 25%;">Description of Goods/Services</td>
+                                <td rowspan="2" >SAC Code</td>
+                                <td rowspan="2" >HSN Code</td>
+                                <td rowspan="2" >Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
                                 <td rowspan="2">Rate</td>
                                 <td rowspan="2">Qty</td>
@@ -654,6 +655,8 @@
                               
                                 <tr class="center item">
                                     <td class="space"> {{ ++$count }} </td>
+                                      <td class="sac">{{ $psac[$mykey] ?? '' }}</td>
+                                        <input type="hidden" class="psac" name="psac[]" value="{{ $psac[$mykey] ?? '' }}" />
                                     <td class="hsn">{{ $phsn[$mykey] ?? '' }}</td>
                                         <input type="hidden" class="phsn" name="phsn[]" value="{{ $phsn[$mykey] ?? '' }}" />
                                     <td class="item-display">{{ $pdescription[$mykey] ?? '' }}</td>
@@ -712,7 +715,7 @@
                             </tr>
  --}}
                            <tr class="center bottom-footer-tr">
-                                
+                                <td></td>
                                 <td colspan="4"></td>
                                 <td colspan="3">Net Amount  </td>
                                 <td id="display-gross-total-amount">
@@ -729,7 +732,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="hidden" value="{{ $quotation->amount_in_words }}" class="w-100" ></span></td>
+                                <td colspan="13"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="hidden" value="{{ $quotation->amount_in_words }}" class="w-100" ></span></td>
                             </tr>
                         
                         </tbody>

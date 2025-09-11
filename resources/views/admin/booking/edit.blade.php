@@ -777,6 +777,8 @@ thead tr td{
                     //alert('xd');
                              var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
                 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+

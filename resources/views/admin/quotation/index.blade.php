@@ -59,7 +59,7 @@
 															 	<td>{{ $venue_details['dvenue_name'] ?? '' }}</td>
 															 	<td>{{ $venue_details['dcity'] ?? '' }}</td>
 																<td>{{ $customer_details['creadyness'] ?? '' }}</td>
-																<td></td>
+																<td>{{ number_format($inv->net_amount, 2) }}</td>
 																{{-- <td></td> --}}
 
 																<td>{{ number_format($inv->total_gp, 2) }}</td>
