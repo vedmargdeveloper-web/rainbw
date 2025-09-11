@@ -555,6 +555,7 @@
                             {{-- style="background: #ffa5d740;"  --}}
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
+                                <td rowspan="2" style="width: 75px;">SAC Code</td>
                                 <td rowspan="2" style="width: 75px;">HSN Code</td>
                                 <td rowspan="2" style=" width: 173px;">Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
@@ -579,6 +580,8 @@
 
                             <tr class="center item">
                                     <td class="space"><span class="remove-btn"><i class="fa fa-times" aria-hidden="true"></i></span></td>
+                                    <td class="sac"></td>
+                                    <input type="hidden" class="psac" name="psac[]" value="" />
                                     <td class="hsn"></td>
                                     <input type="hidden" class="phsn" name="phsn[]" value="" />
                                     <td class="item-display"></td>
@@ -796,6 +799,8 @@
 
                 var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
                 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+

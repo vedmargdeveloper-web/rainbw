@@ -18,6 +18,29 @@
             border-radius: 20px;
             height: 40px;
         }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 18px;
+            height: 14px;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 2px;
+            background-color: black;
+        }
+
+        .Hamburger-dropdown {
+            background-color: #fff; 
+            padding: 6px 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
     <div class="container-fluid">
         <div class="content-wrapper">
@@ -40,7 +63,7 @@
                                 <th>Type</th>
                                 <th>Client</th>
                                 <th>POC</th>
-                                <th>Unique ID</th>
+                                <th>Unique ID/Invoice No</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Whatsapp</th>
@@ -121,12 +144,11 @@
                         </a>
                     </div>
                     <div class="col-md-4 col-lg">
-
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <p class="text-muted mb-1">Total Gross Profit</p>
-                                <h3 class="fw-bold mb-0">₹96.3L</h3>
-                                <small class="text-muted"><span class="text-success">45.33%</span> Avg. GP</small>
+                                <h3 class="fw-bold mb-0">{{ $overallGPValueFormatted }}</h3>
+                                <small class="text-muted"><span class="text-success">{{ $overallGPPercent }}%</span> Avg. GP</small>
                             </div>
                         </div>
 
@@ -224,26 +246,47 @@
                     <div class="col-lg-8">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class=" mb-0">Financial Performance (<span id="fyText">Business Analysis
-                                            Report</span>)</h5>
-                                    <div class="d-flex gap-2 mb-2">
-                                        <select class="form-select form-select-sm select-months" id="financialMonth">
-                                            <option value="">Month</option>
-                                            @for ($m = 1; $m <= 12; $m++)
-                                                <option value="{{ $m }}">
-                                                    {{ DateTime::createFromFormat('!m', $m)->format('M') }}</option>
-                                            @endfor
-                                        </select>
-                                        <select class="form-select form-select-sm" id="financialYear">
-                                            <option value="">Year</option>
-                                            @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
-                                                <option value="{{ $y }}">{{ $y }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
+                               <div class="d-flex justify-content-between align-items-center mb-2">
+                                <!-- Left: Title -->
+                                <h5 class="mb-0">
+                                    Financial Performance (<span id="fyText">Business Analysis Report</span>)
+                                </h5>
 
+                                <!-- Right: Filters + Download -->
+                                <div class="d-flex align-items-center gap-2 ms-auto">
+                                    <!-- Month/Year selects -->
+                                    <select class="form-select form-select-sm select-months" id="financialMonth">
+                                        <option value="">Month</option>
+                                        @for ($m = 1; $m <= 12; $m++)
+                                            <option value="{{ $m }}">
+                                                {{ DateTime::createFromFormat('!m', $m)->format('M') }}
+                                            </option>
+                                        @endfor
+                                    </select>
+                                    <select class="form-select form-select-sm mr-2" id="financialYear">
+                                        <option value="">Year</option>
+                                        @for ($y = date('Y'); $y >= date('Y') - 5; $y--)
+                                            <option value="{{ $y }}">{{ $y }}</option>
+                                        @endfor
+                                    </select>
+
+                                    <!-- Hamburger dropdown -->
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-primary Hamburger-dropdown" type="button" data-bs-toggle="dropdown">
+                                            <div class="hamburger">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#" id="downloadPNG">Download PNG</a></li>
+                                            {{-- <li><a class="dropdown-item" href="#" id="downloadSVG">Download SVG</a></li> --}}
+                                            <li><a class="dropdown-item" href="#" id="downloadCSV">Download CSV</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
+                            </div>
                                 <div class="chart-container" style="height: 300px;">
                                     <canvas id="financialChart"></canvas>
                                 </div>
@@ -254,134 +297,7 @@
 
 
                 <!-- Tables Section -->
-                <div class="row g-3">
-                    {{-- <div class="col-xl-12">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h5 class="mb-0">Finds Values</h5>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>S/No.</th>
-                                            <th>Type</th>
-                                            <th>Client Name</th>
-                                            <th>Unique id</th>
-                                            <th>Phone No</th>
-                                            <th>Email</th>
-                                            <th>Whatsapp</th>
-                                            <th>Lead Status</th>
-                                            <th colspan="2">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($latestInquiries && count($latestInquiries) > 0)
-                                            @foreach ($latestInquiries as $inv)
-                                                @php
-                                                    $customer = json_decode($inv->customer_details, true);
-
-                                                    $contact_person = $inv->customer
-                                                        ? json_decode($inv->customer->contact_person_name, true)
-                                                        : false;
-                                                    $contact_person_mobile = $inv->customer
-                                                        ? json_decode($inv->customer->mobile, true)
-                                                        : false;
-
-                                                @endphp
-                                                <tr>
-                                                    <td>{{ $loop->iteration }} </td>
-                                                    <td>{{ $inv->customer->company_name ?? '' }}</td>
-                                                    <td>{{ }}</td>
-                                                    <td>{{ $inv->unique_id }}</td>
-                                                    <td>{{ $contact_person ? $contact_person_mobile[$inv->contact_person_c] ?? $contact_person_mobile[0] : 'Something Wrong' }}
-                                                    </td>
-                                                    <td>{{ $inv->customer ? $inv->customer->email : 'Something Wrong' }}
-                                                    </td>
-                                                    <td>{{ $inv->customer->cwhatsapp ?? '' }}</td>
-                                                    <td>{{ $inv->leadstatus ? $inv->leadstatus->status : '' }}</td>
-                                                    <td colspan="3">
-                                                        <a href="{{ route('inquiry.edit', ['inquiry' => $inv->id]) }}"
-                                                            class="badge badge-success">Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-xl-12">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h5 class="mb-0">Upcoming Events</h5>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>S.No.</th>
-                                            <th>Booking No</th>
-                                            <th>Quotation Id</th>
-                                            <th>Client</th>
-                                            <th>POC</th>
-                                            <th>Mobile</th>
-                                            <th>Booking Date</th>
-                                            <th>Readyness</th>
-                                            <th>Venue</th>
-                                            <th>Occassion</th>
-                                            <th>Total Amount</th>
-                                            <th colspan="2">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($latestBooking && count($latestBooking) > 0)
-                                            @foreach ($latestBooking as $inv)
-                                                @php
-                                                    $customer_details = json_decode($inv->customer_details, true);
-                                                    $venue_details = json_decode($inv->delivery_details, true);
-                                                @endphp
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $inv->invoice_no }}</td>
-                                                    <td>{{ $inv->quotaiton->invoice_no ?? '' }}</td>
-                                                    <td>{{ $customer_details['company_name'] ?? '' }}</td>
-                                                    <td>{{ is_numeric($customer_details['contact_person_c']) ? $customer_details['select_two_name'] ?? '' : $customer_details['contact_person_c'] }}
-                                                    </td>
-                                                    <td>
-
-                                                        {{ $customer_details['cmobile'] ?? '' }}</td>
-                                                    <td>{{ date('d-m-Y', strtotime($inv->billing_date)) }}</td>
-                                                    <td>{{ $customer_details['creadyness'] ?? '' }}</td>
-                                                    <td>{{ $venue_details['dvenue_name'] ?? '' }}</td>
-                                                    <td>{{ $inv->quotaiton->occasion->occasion ?? '' }}</td>
-
-
-                                                    <td>{{ $inv->total_amount }}</td>
-                                                    <td colspan="3">
-
-                                                        <a href="{{ route('booking.print', ['id' => $inv->id]) }}"
-                                                            class="badge badge-info">Print
-                                                        </a>
-                                                        <a href="{{ route('booking.email', ['id' => $inv->id]) }}"
-                                                            class="badge badge-success">Email Booking
-                                                        </a>
-                                                        <a href="{{ route('booking.edit', ['booking' => $inv->id]) }}"
-                                                            class="badge badge-primary">Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div> --}}
+                <div class="row g-3"> 
                 </div>
                 <div class="modal fade" id="searchModal" tabindex="-1">
                     <div class="modal-dialog modal-xl">
@@ -415,7 +331,123 @@
             </main>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="modal fade" id="summaryModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title" id="summaryModalLabel">Details</h5>
+        <div class="d-flex gap-2">
+          <button type="button" id="exportExcelBtn"
+                  class="btn btn-light btn-sm mr-2"
+                  title="Export">
+              <i class="bi bi-download"></i>
+          </button>
+          <button type="button" class="btn-close" id="summaryModalClose" aria-label="Close">X</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-striped" id="summaryChartTable">
+            <thead></thead>  
+            <tbody id="summaryChartResults"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="leadStatusModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable"> 
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title" id="leadStatusModalLabel">Details</h5>
+        <div class="d-flex gap-2">
+            <button type="button" 
+                    id="leadStatusexportExcelBtn" 
+                    class="btn btn-light btn-sm d-flex align-items-center gap-1 mr-2"
+                    title="Export">
+                <i class="bi bi-download"></i>
+            </button>
+            <button type="button" class="btn-close" id="leadStatusModalClose" aria-label="Close">X</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Responsive Table Wrapper -->
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered align-middle" id="leadStatusChartTable">
+            <thead class="table-light">
+              <tr>
+                <th>S/No</th>
+                <th>Type</th>
+                <th>Client</th>
+                <th>POC</th>
+                <th>Unique ID</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Whatsapp</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leadStatusChartResults"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="lossBusinessModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title" id="lossBusinessModalLabel">Loss Business Details</h5>
+        <div class="d-flex gap-2">
+            <button type="button" 
+                    id="lossBusinessexportExcelBtn" 
+                    class="btn btn-light btn-sm d-flex align-items-center gap-1 mr-2"
+                    title="Export">
+                <i class="bi bi-download"></i>
+            </button>
+            <button type="button" class="btn-close" id="lossBusinessModalClose" aria-label="Close">X</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>S/No</th>
+                <th>Client</th>
+                <th>Unique ID</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Whatsapp</th>
+                <th>Reason</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="lossBusinessChartResults"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas2svg@1.0.19/canvas2svg.min.js"></script>
+
+
 
     <script>
         const base_url = "{{ config('app.url') }}";
@@ -451,6 +483,68 @@
                     }
                 }
             });
+ 
+               // ===== Bootstrap Modal Instance =====
+            const leadStatusModalEl = document.getElementById('leadStatusModal');
+            const leadStatusModal   = new bootstrap.Modal(leadStatusModalEl);
+
+            // ===== Click on Chart Slice =====
+            document.getElementById('leadStatusChart').onclick = function(evt) {
+                const activePoints = leadStatusChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                if (!activePoints.length) return;
+
+                const index = activePoints[0].index;
+                const key   = leadStatusChart.data.labels[index]; // <-- FIXED
+
+                // Filters
+                const month = document.getElementById('leadStatusMonth')?.value || '';
+                const year  = document.getElementById('leadStatusYear')?.value || '';
+
+                fetch(`${base_url}/admin/dashboard/leadStatus-details?type=${encodeURIComponent(key)}&month=${month}&year=${year}`)
+                    .then(res => res.json())
+                    .then(rows => {
+                        let html = '';
+                        rows.forEach((row, i) => {
+                            html += `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${row.type}</td>
+                                    <td>${row.client}</td>
+                                    <td>${row.poc}</td>
+                                    <td>${row.unique_id}</td>
+                                    <td>${row.phone}</td>
+                                    <td>${row.email}</td>
+                                    <td>${row.whatsapp}</td>
+                                    <td><a href="${row.edit_url}" class="btn btn-sm btn-primary">Edit</a></td>
+                                </tr>
+                            `;
+                        });
+                        document.getElementById('leadStatusChartResults').innerHTML = html;
+                        document.getElementById('leadStatusModalLabel').textContent = `${key} Details`;
+                        leadStatusModal.show();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("Failed to load details. Please try again.");
+                    });
+            };
+
+            // Close modal button
+            document.getElementById('leadStatusModalClose')?.addEventListener('click', () => {
+                leadStatusModal.hide();
+            });
+
+            // Export Excel
+            document.getElementById('leadStatusexportExcelBtn').addEventListener('click', () => {
+                const type  = document.getElementById('leadStatusModalLabel').textContent.split(' Details')[0];
+                const month = document.getElementById('leadStatusMonth')?.value || '';
+                const year  = document.getElementById('leadStatusYear')?.value || '';
+
+                const url = `${base_url}/admin/dashboard/leadStatus-export?type=${encodeURIComponent(type)}&month=${month}&year=${year}`;
+                window.open(url, '_blank'); 
+            });
+
+
 
             // Financial Performance Chart (Bar & Line)
             const financialCtx = document.getElementById('financialChart').getContext('2d');
@@ -517,12 +611,60 @@
             });
 
 
+            document.getElementById('downloadPNG').addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.href = financialChart.toBase64Image();
+                link.download = 'Financial-Chart.png';
+                link.click();
+            });
+
+            // document.getElementById('downloadSVG').addEventListener('click', function() {
+            //     const canvas = financialChart.canvas;
+            //     const svgData = `
+            //         <svg xmlns="http://www.w3.org/2000/svg" width="${canvas.width}" height="${canvas.height}">
+            //             <foreignObject width="100%" height="100%">
+            //                 ${canvas.outerHTML}
+            //             </foreignObject>
+            //         </svg>
+            //     `;
+            //     const blob = new Blob([svgData], {type: 'image/svg+xml'});
+            //     const url = URL.createObjectURL(blob);
+            //     const a = document.createElement('a');
+            //     a.href = url;
+            //     a.download = 'Financial-Chart.svg';
+            //     a.click();
+            //     URL.revokeObjectURL(url);
+            // });
+
+            // ---- Download CSV ----
+           
+            document.getElementById('downloadCSV').addEventListener('click', function() {
+            const month = document.getElementById('financialMonth').value;
+            const year = document.getElementById('financialYear').value;
+
+            // Build URL with query params
+            const url = `${base_url}/admin/financial-chart/export-csv?month=${month}&year=${year}`;
+
+            fetch(url)
+                .then(res => res.blob())
+                .then(blob => {
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = 'Financial-Chart.csv';
+                    a.click();
+                    window.URL.revokeObjectURL(downloadUrl);
+                });
+            });
+
+
             //Summary Chart
             const summaryData = @json($summary);
             const labels = Object.keys(summaryData).map(key => {
                 const item = summaryData[key];
                 if (item.amt && item.amt > 0) {
                     return `${key} (${item.qty}, ₹${Number(item.amt).toLocaleString()})`;
+                    //  return `${key} (${item.qty})`;
                 }
                 return `${key} (${item.qty})`;
             });
@@ -572,6 +714,84 @@
                 }
 
             });
+   
+                // ===== Bootstrap Modal Instance =====
+        
+            const summaryModalEl = document.getElementById('summaryModal');
+                const summaryModal   = new bootstrap.Modal(summaryModalEl);
+
+                // ===== Click on Chart Slice =====
+                document.getElementById('summaryChart').onclick = function(evt) {
+                    const activePoints = summaryChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                    if (!activePoints.length) return;
+
+                    const index = activePoints[0].index;
+                    const key   = Object.keys(summaryData)[index];
+
+                    // Filters
+                    const month = document.getElementById('summaryMonth')?.value || '';
+                    const year  = document.getElementById('summaryYear')?.value || '';
+
+                    fetch(`${base_url}/admin/dashboard/summary-details?type=${encodeURIComponent(key)}&month=${month}&year=${year}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            // ===== Build Table Head =====
+                            let theadHtml = '<tr>';
+                            data.columns.forEach(col => {
+                                theadHtml += `<th>${col}</th>`;
+                            });
+                            theadHtml += '</tr>';
+                            document.querySelector("#summaryChartTable thead").innerHTML = theadHtml;
+
+                            // ===== Build Table Body =====
+                            let tbodyHtml = '';
+                            data.rows.forEach((row, i) => {
+                                tbodyHtml += '<tr>';
+                                tbodyHtml += `<td>${i+1}</td>`; // First column always S/No.
+
+                                // Loop through row keys except edit_url
+                                Object.keys(row).forEach(k => {
+                                    if (k !== 'edit_url') {
+                                        tbodyHtml += `<td>${row[k] ?? ''}</td>`;
+                                    }
+                                });
+
+                                // Action column (edit link/button)
+                                if (row.edit_url) {
+                                    tbodyHtml += `<td><a href="${row.edit_url}" class="badge bg-primary">Edit</a></td>`;
+                                } else {
+                                    tbodyHtml += '<td>-</td>';
+                                }
+
+                                tbodyHtml += '</tr>';
+                            });
+
+                            document.querySelector("#summaryChartTable tbody").innerHTML = tbodyHtml;
+
+                            // ===== Update Modal Title & Show =====
+                            document.getElementById('summaryModalLabel').textContent = `${data.type} Details`;
+                            summaryModal.show();
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert("Failed to load details. Please try again.");
+                        });
+                };
+
+                // ===== Close modal button =====
+                document.getElementById('summaryModalClose')?.addEventListener('click', () => {
+                    summaryModal.hide();
+                });
+
+                // ===== Export button =====
+                document.getElementById('exportExcelBtn')?.addEventListener('click', () => {
+                    const type  = document.getElementById('summaryModalLabel').textContent.split(' ')[0];
+                    const month = document.getElementById('summaryMonth')?.value || '';
+                    const year  = document.getElementById('summaryYear')?.value || '';
+
+                    window.location.href = `${base_url}/admin/dashboard/summary-export?type=${encodeURIComponent(type)}&month=${month}&year=${year}`;
+                });
+
 
             // Business Loss Chart
             const lossBusinessLabels = @json(array_column($lossBusinessFinal, 'head'));
@@ -628,6 +848,69 @@
                 console.warn("No data for Loss Business Chart");
             }
 
+
+            // ===== Bootstrap Modal Instance =====
+            const lossBusinessModalEl = document.getElementById('lossBusinessModal');
+            const lossBusinessModal   = new bootstrap.Modal(lossBusinessModalEl);
+
+            // ===== Click on Chart Slice =====
+            document.getElementById('lossBusinessChart').onclick = function(evt) {
+                const activePoints = lossBusinessChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                if (!activePoints.length) return;
+
+                const index = activePoints[0].index;
+                const reason = lossBusinessChart.data.labels[index]; // reason text
+
+                // Filters
+                const month = document.getElementById('lossBusinessMonth')?.value || '';
+                const year  = document.getElementById('lossBusinessYear')?.value || '';
+
+                fetch(`${base_url}/admin/dashboard/lossBusiness-details?reason=${encodeURIComponent(reason)}&month=${month}&year=${year}`)
+                    .then(res => res.json())
+                    .then(rows => {
+                        let html = '';
+                        rows.forEach((row, i) => {
+                            html += `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${row.client}</td>
+                                    <td>${row.unique_id}</td>
+                                    <td>${row.phone}</td>
+                                    <td>${row.email}</td>
+                                    <td>${row.whatsapp}</td>
+                                    <td>${reason}</td>
+                                    <td><a href="${row.edit_url}" class="btn btn-sm btn-primary">Edit</a></td>
+                                </tr>
+                            `;
+                        });
+                        document.getElementById('lossBusinessChartResults').innerHTML = html;
+                        document.getElementById('lossBusinessModalLabel').textContent = `${reason} Details`;
+                        lossBusinessModal.show();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("Failed to load details. Please try again.");
+                    });
+            };
+
+            // Close modal button
+            document.getElementById('lossBusinessModalClose')?.addEventListener('click', () => {
+                lossBusinessModal.hide();
+            });
+
+            // Export Excel
+            document.getElementById('lossBusinessexportExcelBtn').addEventListener('click', () => {
+                const reason = document.getElementById('lossBusinessModalLabel').textContent.split(' Details')[0];
+                const month  = document.getElementById('lossBusinessMonth')?.value || '';
+                const year   = document.getElementById('lossBusinessYear')?.value || '';
+
+                const url = `${base_url}/admin/dashboard/lossBusiness-export?reason=${encodeURIComponent(reason)}&month=${month}&year=${year}`;
+                window.open(url, '_blank'); 
+            });
+
+
+
+
             const charts = {
                 summary: summaryChart,
                 leadStatus: leadStatusChart,
@@ -636,6 +919,7 @@
             };
 
             // ===== UPDATE CHART FUNCTION =====
+           
             function updateChart(type, month, year) {
                 console.log("Updating chart:", type, "Month:", month, "Year:", year);
 
@@ -653,12 +937,35 @@
                         if (type === 'summary') {
                             chart.data.labels = data.labels;
                             chart.data.datasets[0].data = data.qtyValues;
+
                         } else if (type === 'leadStatus') {
                             chart.data.labels = data.labels;
                             chart.data.datasets[0].data = data.data;
+
                         } else if (type === 'lossBusiness') {
-                            chart.data.labels = data.map(d => d.head);
-                            chart.data.datasets[0].data = data.map(d => d.qty);
+                            const labels = data.map(d => d.head);
+                            const quantities = data.map(d => d.qty);
+                            const percents = data.map(d => d.percent);
+
+                            // Replace datasets entirely to fix doughnut chart issues
+                            chart.data.labels = labels;
+                            chart.data.datasets = [{
+                                data: quantities,
+                                backgroundColor: [
+                                    '#EF4444', '#F59E0B', '#10B981', '#3B82F6',
+                                    '#8B5CF6', '#EC4899', '#14B8A6', '#F97316',
+                                    '#6366F1', '#84CC16', '#DC2626'
+                                ],
+                                borderWidth: 1,
+                                hoverOffset: 6
+                            }];
+
+                            // Optional: update tooltip with percentage
+                            chart.options.plugins.tooltip.callbacks.label = function(context) {
+                                const idx = context.dataIndex;
+                                return `${context.label}: ${quantities[idx]} (${percents[idx]}%)`;
+                            };
+
                         } else if (type === 'financial') {
                             chart.data.datasets[0].data = data.ttBusinessData;
                             chart.data.datasets[1].data = data.gpPercentData;
@@ -671,6 +978,7 @@
                     })
                     .catch(error => console.error('Error fetching chart data:', error));
             }
+
 
 
             // ===== ATTACH FILTER EVENTS =====

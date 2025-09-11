@@ -74,6 +74,15 @@
 													</div>
 													<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 														<div class="form-group">
+															<label for="inputEmail">Profit Margin(%) *</label>
+															<input type="number" min="0" class="form-control" value="{{ old('profit_margin') }}"  id="" placeholder="Profit Margin" name="profit_margin">
+															@error('profit_margin')
+																	<span class="text-warning">{{ $message }}</span>
+															@endError
+														</div>
+													</div>
+													<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+														<div class="form-group">
 															<label for="inputEmail">Status *</label>
 															<select placeholder="Status" name="status"   class="form-control">
 																<option value="active" {{ (old('status') =='active') ? 'selected' :''  }}>Active</option>
@@ -113,6 +122,7 @@
 																  <th>CGST</th>
 																  <th>SGST</th>
 																  <th>IGST</th>
+																  <th>Profit Margin</th>
 																  <th>Description</th>
 																  <th>Date & time</th>
 																  <th ></th>

@@ -25,12 +25,11 @@
 												  <th>POC</th>
 												  <th>Mobile</th>
 												  <th>Duration</th>
-												  {{-- <th>Occasion</th> --}}
-												
 												  <th>Venue</th>
 												  <th>City</th>
 												  <th>Readyness</th>
 												  {{-- <th>Item</th> --}}
+												    {{-- <th>Occasion</th> --}}
 												  <th>Ticket Size</th>
 												  <th>GP</th>
 												  <th colspan="2">Action</th>
@@ -61,7 +60,10 @@
 															 	<td>{{ $venue_details['dcity'] ?? '' }}</td>
 																<td>{{ $customer_details['creadyness'] ?? '' }}</td>
 																<td></td>
-																<td></td>
+																{{-- <td></td> --}}
+
+																<td>{{ number_format($inv->total_gp, 2) }}</td>
+
 															 	{{-- <td> 
 															 		@foreach($inv->quotationItem  as $sinitem)
 															 				{{ $sinitem->item ?? '' }},

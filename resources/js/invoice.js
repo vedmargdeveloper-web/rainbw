@@ -804,6 +804,10 @@ $("body").on("change", ".select-item-product", function () {
 
     var input_phsn = $(this).parents().closest("tr").children("input.phsn");
     var div_input_phsn = $(this).parents().closest("tr").children("td.hsn");
+
+     var input_psac = $(this).parents().closest("tr").children("input.psac");
+    var div_input_psac = $(this).parents().closest("tr").children("td.sac");
+
     var input_pdescription = $(this).parents().closest("tr").children("input.pdescription");
     var input_pname = $(this).parents().closest("tr").children("input.pname");
     var input_item_display = $(this).parents().closest("tr").children("td.item-display");
@@ -818,8 +822,10 @@ $("body").on("change", ".select-item-product", function () {
     })
         .done(function (product) {
             // console.log(product);
-            $(input_phsn).val(product.hsn);
-            $(div_input_phsn).text(product.hsn);
+            $(input_psac).val(product.hsn);
+            $(div_input_psac).text(product.hsn);
+            $(input_phsn).val(product.sac);
+            $(div_input_phsn).text(product.sac);
             $(input_pname).val(product.name);
             $(input_pdescription).val(product.description);
             $(input_pdescription).val(product.description);
@@ -892,6 +898,10 @@ function insertProductList(product_id, selected_product_qty, amount, day) {
                 Global_item_serial_no +
                 '<span class="remove-btn">X</span></td>' +
                 "" +
+                '<td class="sac">' +
+                product.sac +
+                '</td><input type="hidden" name="psac[]" value="' +
+                product.sac +
                 '<td class="hsn">' +
                 product.hsn +
                 '</td><input type="hidden" name="phsn[]" value="' +

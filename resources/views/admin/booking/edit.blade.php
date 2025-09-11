@@ -571,6 +571,7 @@ thead tr td{
                             {{-- style="background: #ffa5d740;"  --}}
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
+                                <td rowspan="2" style="width: 75px;">SAC Code</td>
                                 <td rowspan="2" style="width: 75px;">HSN Code</td>
                                 <td rowspan="2" style=" width: 173px;">Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
@@ -599,6 +600,7 @@ thead tr td{
                              <tbody class="main-td">
                                 <tr class="center item">
                                     <td class="space"><span class="remove-btn">X</span></td>
+                                    <td class="sac">{{ $invoice_item->sac_code ?? '' }}</td>
                                     <td class="hsn">{{ $invoice_item->hsn_code ?? '' }}</td>
                                     <input type="hidden" class="phsn" name="phsn[]" value="{{ $invoice_item->hsn_code ?? '' }}" />
                                     <td class="item-display">{{ $invoice_item->description ?? '' }}</td>
@@ -640,7 +642,7 @@ thead tr td{
                         @endforeach
 
                             <tr class="inser-div-before">
-                                <td colspan="13">
+                                <td colspan="15">
                                     <center>
                                         <a href="javascript:void(0)" id="add-more-btn" class="btn btn-primary">ADD ITEM</a>
                                     </center>
@@ -648,7 +650,7 @@ thead tr td{
                             </tr>
 
                             <tr class="center bottom-footer-tr">
-                                {{-- <td></td> --}}
+                                <td></td>
                                 <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
                                 <td colspan="3">Net Amount</td>
                                 <td id="display-gross-total-amount">{{ $invoice->net_amount }}
@@ -667,10 +669,10 @@ thead tr td{
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="text" value="{{ $invoice->amount_in_words }}" class="w-100" ></span></td>
+                                <td colspan="13"><span id="amountinword"><input name="amount_in_words" id="amount_in_words" type="text" value="{{ $invoice->amount_in_words }}" class="w-100" ></span></td>
                                 <tr>
                                     <td colspan="3" style="text-align: right;">Remark </td>
-                                    <td colspan="11"><input name="remark" id="remark" type="text" value="{{ $invoice->remark }}" class="w-100" ></td>
+                                    <td colspan="13"><input name="remark" id="remark" type="text" value="{{ $invoice->remark }}" class="w-100" ></td>
                                 </tr>
                             </tr>
                         

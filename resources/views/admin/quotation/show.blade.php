@@ -579,7 +579,8 @@
                         <tbody>   
                             <tr class="sub-heading-item" >
                                 
-                                <td rowspan="2" >HSN Code</td>
+                                <td rowspan="2" >SAC Code</td>
+                                 <td rowspan="2" >HSN Code</td>
                                 <td rowspan="2" style=" width: 20%">Description of Goods/Services</td>
                                 <td rowspan="2" style="width: 1%;">Item</td>
                                 <td rowspan="2">Rate</td>
@@ -609,7 +610,9 @@
                                  @foreach($inquiry_items as $invoice_item)
                                 <tr class="center item">
                                              {{-- <td class="space"><span class="remove-btn">X</span></td> --}}
-                                            <td class="hsn">{{ $invoice_item->hsn_code ?? '' }}</td> 
+                                            <td class="sac">{{ $invoice_item->sac_code ?? '' }}</td> 
+                                            <input type="hidden" class="psac" name="psac[]" value="{{ $invoice_item->sac_code ?? '' }}" />
+                                             <td class="hsn">{{ $invoice_item->hsn_code ?? '' }}</td> 
                                             <input type="hidden" class="phsn" name="phsn[]" value="{{ $invoice_item->hsn_code ?? '' }}" />
                                             <td class="item-display">{{ $invoice_item->description ?? '' }}</td>
                                             <input type="hidden" class="pdescription"  name="pdescription[]" value="{{ $invoice_item->description ?? '' }}"   />
@@ -663,11 +666,11 @@
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11"><input name="amount_in_words" id="amount_in_words" type="text" value="" class="w-100" ></td>
+                                <td colspan="13"><input name="amount_in_words" id="amount_in_words" type="text" value="" class="w-100" ></td>
                             </tr>
                              <tr>
                                     <td colspan="2" style="text-align: right;">Remark </td>
-                                    <td colspan="11"><input name="remark" id="remark" type="text" value="" class="w-100" ></td>
+                                    <td colspan="13"><input name="remark" id="remark" type="text" value="" class="w-100" ></td>
                                 </tr>
                         </tbody>
                     </table>

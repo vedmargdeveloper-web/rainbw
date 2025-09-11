@@ -34,7 +34,7 @@ class ItemController extends Controller
     }
 
     public function fetch_item_ajax(){
-        $items = Item::get(['name','hsn','description','cgst','sgst','igst','sac','status','id','created_at']);
+        $items = Item::get(['name','hsn','description','cgst','sgst','igst','sac','status','id','profit_margin','created_at']);
         return response()->json(['data'=>$items]);
     }
 
@@ -54,7 +54,8 @@ class ItemController extends Controller
     {
         //dd($request);
         $this->validation($request);
-        $data = $request->except(['_token','submit']); 
+        $data = $request->except(['_token','submit','profit_margin']); 
+       
         // dd($data);
         Item::create($data);
 
@@ -71,6 +72,7 @@ class ItemController extends Controller
             'cgst' => 'required|numeric',
             'igst' => 'required|numeric',
             'sgst' => 'required|numeric',
+            'profit_margin' => 'required|numeric',
             'status' => 'required',
         ],
         [
@@ -80,6 +82,7 @@ class ItemController extends Controller
             'sgst.required' => 'sgst is required *',
             'igst.required' => 'igst is required *',
             'cgst.required' => 'cgst is required *',
+            'profit_margin.required' => 'cgst is required *',
             'status.required' => 'Status is required *',
         ]);
         // if( $validator->fails() ) {
@@ -123,7 +126,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->except(['_token','submit','_method']); 
+        $data = $request->except(['_token','submit','_method', 'profit_margin']); 
         $ee = Item::where('id',$id)->update($data);
     //    return redirect()->back()->with('msg','Product is updated');
         return response()->json(['msgs'=>true]);

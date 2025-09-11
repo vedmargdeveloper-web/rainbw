@@ -397,6 +397,7 @@ thead tr td{
 	                         
 	                            <tr class="sub-heading-item" >
 	                                <td rowspan="2" >S.No</td>
+									<td rowspan="2" >SAC Code</td>
 	                                <td rowspan="2" >HSN Code</td>
 	                                <td rowspan="2" width="25%;">Description of Goods/Services</td>
 	                                <td rowspan="2" width="20%;">Item</td>
@@ -426,6 +427,7 @@ thead tr td{
 	                             <tbody class="main-td">
 	                                <tr class=" item">
 	                                            <td class="space-" width="4%">{{ $count++  }}</td>
+												<td class="hsn-" width="8%">{{ $invoice_item->sac_code ?? '' }}</td>
 	                                            <td class="hsn-" width="8%">{{ $invoice_item->hsn_code ?? '' }}</td>
 	                                           
 	                                            <td class="item-display" width="14%">{{ $invoice_item->description ?? '' }}</td>
@@ -456,7 +458,7 @@ thead tr td{
 	                        @endforeach
 	                        	 </tbody>
 	                            <tr class="center bottom-footer-tr">
-	                               
+	                               <td></td>
 	                                <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
 	                                <td colspan="3" style="text-align: right;">Net Amount </td>
 	                                <td id="display-gross-total-amount">{{ $gross_amount_total ?? 0 }}</td>
@@ -474,7 +476,7 @@ thead tr td{
 	                            </tr>
 	                            <tr>
 	                                <td colspan="3" style="text-align: right;">Amount in words :</td>
-	                                <td colspan="11" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
+	                                <td colspan="13" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
 	                            </tr>
 	                        
 	                     
@@ -572,7 +574,9 @@ thead tr td{
                     //alert('xd');
                              var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
-                '                                    <td class="hsn"></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
+				 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+
                 '                                    <input type="hidden" class="pdescription"  name="pdescription[]" value="" />'+

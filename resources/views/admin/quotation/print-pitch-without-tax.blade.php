@@ -482,7 +482,8 @@ thead tr td{
                             <br>
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
-                                <td rowspan="2" >HSN/SAC Code</td>
+                                 <td rowspan="2" >SAC Code</td>
+                                <td rowspan="2" >HSN Code</td>
                                 <td rowspan="2" style="width: 22%;">Description of Goods/Services</td>
                                 <td rowspan="2" style="width: 20%;">Item</td>
                                 <td rowspan="2">Rate</td>
@@ -511,6 +512,7 @@ thead tr td{
                                 <tbody class="main-td">
                                 <tr class="item">
                                             <td>{{ ++$count }}</td>
+                                            <td class="sac"> {{ $invoice_item->sac_code ?? '' }}</td> 
                                             <td class="hsn"> {{ $invoice_item->hsn ?? '' }}</td> 
                                             <td class="item-display">{{ $invoice_item->description ?? '' }}</td>
                                             <td class="item">

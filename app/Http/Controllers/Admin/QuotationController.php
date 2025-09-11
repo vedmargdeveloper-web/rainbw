@@ -14,6 +14,7 @@ use App\Models\LeadStatusLog;
 use App\Models\Address;
 use PDF;
 use Storage;
+use Illuminate\Support\Facades\DB;
 
 class QuotationController extends Controller
 {
@@ -24,10 +25,19 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $invoice = Quotation::with('customerType','leadstatus','inquiry','quotationItem','occasion')->withCount('pitch')->get();
+        $invoice = Quotation::with('customerType','leadstatus','inquiry','quotationItem','occasion')->withCount('pitch')
+        ->select('quotations.*')
+        ->selectSub(function ($query) {
+            $query->from('quotations_items as qi')
+                ->join('items as i', 'qi.item_id', '=', 'i.id')
+                ->selectRaw('SUM((qi.gross_amount * i.profit_margin) / 100)')
+                ->whereColumn('qi.invoice_id', 'quotations.id');
+        }, 'total_gp')
+        ->get();
+
         return view(_template('quotation.index'),['invoices'=>$invoice,'title'=>'All Quotations']);
     }
-
+  
     public function fetch_ajax_status(Request $request)
     {
         $lead = LeadStatusLog::where('inquires_id',$request->inquiry_id)->latest()->first('status');
@@ -208,7 +218,7 @@ class QuotationController extends Controller
                 ///echo  $request->ptotal_amount[$key];
                 //  dd($request->ptotal_amount[$key]);
 
-                $invoice_products = ['invoice_id' => $invoice_id, 'item_id' => $request->item_id[$key], 'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
+                $invoice_products = ['invoice_id' => $invoice_id, 'item_id' => $request->item_id[$key], 'sac_code' => $request->psac[$key], 'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
                
                QuotationsItem::create($invoice_products);
             }
@@ -550,7 +560,7 @@ class QuotationController extends Controller
                 $products = $request->pname;
                 foreach ($products as $key => $p)
                 {
-                    $invoice_products = ['invoice_id' => $id, 'item_id' => $request->item_id[$key], 'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
+                    $invoice_products = ['invoice_id' => $id, 'item_id' => $request->item_id[$key], 'sac_code' => $request->psac[$key],'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
                      QuotationsItem::create($invoice_products);
                 }
             }

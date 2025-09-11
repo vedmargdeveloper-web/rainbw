@@ -574,6 +574,8 @@ $("body").on("change", ".select-item-product", function () {
     var input_igst = $(this).parents().closest("tr").children("input.igst");
     var input_cgst = $(this).parents().closest("tr").children("input.cgst");
 
+    var input_psac = $(this).parents().closest("tr").children("input.psac");
+    var div_input_psac = $(this).parents().closest("tr").children("td.sac");
     var input_phsn = $(this).parents().closest("tr").children("input.phsn");
     var div_input_phsn = $(this).parents().closest("tr").children("td.hsn");
     var input_pdescription = $(this).parents().closest("tr").children("input.pdescription");
@@ -590,8 +592,10 @@ $("body").on("change", ".select-item-product", function () {
     })
         .done(function (product) {
             console.log(product);
-            $(input_phsn).val(product.hsn);
-            $(div_input_phsn).text(product.hsn);
+            $(input_psac).val(product.hsn);
+            $(div_input_psac).text(product.hsn);
+            $(input_phsn).val(product.sac);
+            $(div_input_phsn).text(product.sac);
             $(input_pname).val(product.name);
             $(input_pdescription).val(product.description);
             $(input_pdescription).val(product.description);

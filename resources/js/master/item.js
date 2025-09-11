@@ -42,6 +42,7 @@ $(function(){
             { data: 'cgst' },
             { data: 'sgst' },
             { data: 'igst' },
+			{ data: 'profit_margin' },
             { data: 'description' },
            { data: 'created_at',render: function (data) {
            	
@@ -180,6 +181,7 @@ $(function(){
 		let sac = $('input[name="sac"]').val();
 		let igst = $('input[name="igst"]').val();
 		let status = $('input[name="status"]').val();
+		let profit_margin = $('input[name="profit_margin"]').val();
 		let description = $('input[name="description"]').val();
 
 		let method =  'PATCH';
@@ -191,7 +193,7 @@ $(function(){
 			url: url,
 			type: method,
 			dataType: 'json',
-			data: {name,hsn,sgst,cgst,igst,status,description,sac},
+			data: {name,hsn,sgst,cgst,igst,status,description,sac,profit_margin},
 		})
 		.done(function(resp) {
 			
@@ -256,6 +258,8 @@ function _show_errors(data,_this){
        }
        if (data.igst) {
            $('<span class="text-danger">' + data.igst[0] + "</span>").insertAfter($('input[name="igst"]', _this));
+	   }if (data.profit_margin) {
+           $('<span class="text-danger">' + data.profit_margin[0] + "</span>").insertAfter($('input[name="profit_margin"]', _this));
        }if (data.description) {
            $('<span class="text-danger">' + data.description[0] + "</span>").insertAfter($('input[name="description"]', _this));
        }
@@ -272,6 +276,7 @@ function _set_edit_value(data){
 		$("#item-store-ajax input[name='igst']").val(data.igst);
 		$("#item-store-ajax input[name='sgst']").val(data.sgst);
 		$("#item-store-ajax input[name='sac']").val(data.sac);
+		$("#item-store-ajax input[name='profit_margin']").val(data.profit_margin);
 		$("#item-store-ajax input[name='description']").val(data.description);
 		$('.btn-add-item').addClass('d-none');
 		$('.btn-update-item').removeClass('d-none');
