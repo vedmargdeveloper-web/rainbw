@@ -423,6 +423,7 @@
                             
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
+                                <td rowspan="2" style="width: 50px;">SAC Code</td>
                                 <td rowspan="2" style="width: 75px;">HSN Code</td>
                                 <td rowspan="2" style=" width: 173px;">Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
@@ -450,6 +451,7 @@
                              {{-- {{ var_dump($invoice_item) }} --}}
                                 <tr class=" item">
                                             <td class="space-" width="4%">{{ $count++  }}</td>
+                                             <td class="sac-" width="8%">{{ $invoice_item->sac_code ?? '' }}</td>
                                             <td class="hsn-" width="8%">{{ $invoice_item->hsn_code ?? '' }}</td>
                                            
                                             <td class="item-display" width="14%">{{ $invoice_item->description ?? '' }}</td>
@@ -477,7 +479,7 @@
 
                             <tr class="center bottom-footer-tr">
                                 <td></td>
-                                <td colspan="3">Tax Payable on Rev. Charge Basis: NO</td>
+                                <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
                                 <td colspan="3">Net Amount</td>
                                 <td id="display-gross-total-amount">{{ $invoice->net_amount }}
                                 </td>
@@ -495,7 +497,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3">Amount in words :</td>
-                                <td colspan="11"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
+                                <td colspan="15"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
                             </tr>
                         
                         </tbody>
@@ -576,6 +578,8 @@
                     //alert('xd');
                              var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
                 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+

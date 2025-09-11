@@ -546,7 +546,8 @@
                             {{-- style="background: #ffa5d740;"  --}}
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
-                                <td rowspan="2" style="width: 75px;">HSN Code</td>
+                                <td rowspan="2" style="width: 60px;">SAC Code</td>
+                                <td rowspan="2" style="width: 60px;">HSN Code</td>
                                 <td rowspan="2" style=" width: 173px;">Description of Goods/Services</td>
                                 <td rowspan="2">Item</td>
                                 <td rowspan="2">Rate</td>
@@ -570,6 +571,8 @@
 
                             <tr class="center item">
                                     <td class="space"><span class="remove-btn"><i class="fa fa-times" aria-hidden="true"></i></span></td>
+                                    <td class="sac"></td>
+                                    <input type="hidden" class="psac" name="psac[]" value="" />
                                     <td class="hsn"></td>
                                     <input type="hidden" class="phsn" name="phsn[]" value="" />
                                     <td class="item-display"></td>
@@ -607,7 +610,7 @@
                             </tr>
 
                             <tr class="inser-div-before">
-                                <td colspan="13">
+                                <td colspan="15">
                                     <center>
                                         <a href="javascript:void(0)" id="add-more-btn" class="btn btn-primary">ADD ITEM</a>
                                     </center>
@@ -616,7 +619,7 @@
 
                             <tr class="center bottom-footer-tr">
                                 <td></td>
-                                <td colspan="3">Tax Payable on Rev. Charge Basis: NO</td>
+                                <td colspan="4">Tax Payable on Rev. Charge Basis: NO</td>
                                 <td colspan="3">Net Amount</td>
                                 <td id="display-gross-total-amount">0
                                 </td>
@@ -634,7 +637,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11"><input name="amount_in_words" id="amount_in_words" type="text" value="" class="w-100" ></td>
+                                <td colspan="15"><input name="amount_in_words" id="amount_in_words" type="text" value="" class="w-100" ></td>
                             </tr>
                         
                         </tbody>
@@ -783,6 +786,8 @@
 
                 var myvar = '<tr class="center item">'+
                 '                                    <td class="space"><span class="remove-btn">X</span></td>'+
+                '                                    <td class="sac"></td>'+
+                '                                    <input type="hidden" class="psac" name="psac[]" value="" />'+
                 '                                    <td class="hsn"></td>'+
                 '                                    <input type="hidden" class="phsn" name="phsn[]" value="" />'+
                 '                                    <td class="item-display"></td>'+

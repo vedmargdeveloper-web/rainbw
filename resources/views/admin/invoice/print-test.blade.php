@@ -293,7 +293,7 @@ thead tr td{
                           <tr>
 
                               <td><?=  ucfirst($invoice->invoice_type) ?> No:</td>
-                              <td colspan="1" style="display: block; width: 150px; height: 15px;" ><?=  $invoice->invoice_no ?></td>
+                              <td colspan="1" style="display: block; width: 245px; height: 15px;" ><?=  $invoice->invoice_no ?></td>
                               <td colspan="4"></td>
                               <td style="background: unset;border: unset; width: 80px; text-align: right;">Event Date:</td>
                               <td style="background: unset; border-bottom:1px solid black ; text-align: center;" ><?=  date('d-m-Y',strtotime($invoice->event_date)) ?></td>
@@ -425,6 +425,7 @@ thead tr td{
                             <br>
                             <tr class="sub-heading-item" >
                                 <td rowspan="2" >S.No</td>
+                                <td rowspan="2" >SAC Code</td>
                                 <td rowspan="2" >HSN Code</td>
                                 <td rowspan="2" width="25%;">Description of Goods/Services</td>
                                 <td rowspan="2" width="20%;">Item</td>
@@ -453,6 +454,7 @@ thead tr td{
                              <tbody class="main-td">
                                 <tr class=" item">
                                             <td class="space-" width="4%">{{ $count++  }}</td>
+                                             <td class="hsn-" width="8%">{{ $invoice_item->sac_code ?? '' }}</td>
                                             <td class="hsn-" width="8%">{{ $invoice_item->hsn_code ?? '' }}</td>
                                            
                                             <td class="item-display" width="14%">{{ $invoice_item->description ?? '' }}</td>
@@ -480,7 +482,7 @@ thead tr td{
                            </tbody>
                             <tr class="center bottom-footer-tr">
                               
-                                <td colspan="4">Tax Payable on Rev. Charge Basis : NO</td>
+                                <td colspan="5">Tax Payable on Rev. Charge Basis : NO</td>
                                 <td colspan="3" style="text-align: right;">Net Amount :</td>
                                 <td id="display-gross-total-amount"> <b>{{ $invoice->net_amount }}</b>
                                 </td>
@@ -498,7 +500,7 @@ thead tr td{
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: right;">Amount in words :</td>
-                                <td colspan="11" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
+                                <td colspan="13" class="green" style="font-weight: 600; text-align: left;"><span id="amountinword">{{ ucfirst($invoice->amount_in_words) ?? '' }}</span></td>
                             </tr>
                         
                        

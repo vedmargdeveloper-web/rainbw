@@ -63,7 +63,7 @@
 														<td>{{ $customer_details['creadyness'] ?? '' }}</td>
 													 	{{-- <td>{{ $inv->quotaiton->occasion->occasion ?? '' }}</td> --}}
 													 	
-													    <td></td>
+													    <td>{{ number_format($inv->net_amount, 2) }}</td>
 													 	<td>{{ $inv->total_amount  }}</td>
 												 		{{-- <td> 
 													 		@foreach($inv->bookingItem  as $sinitem)

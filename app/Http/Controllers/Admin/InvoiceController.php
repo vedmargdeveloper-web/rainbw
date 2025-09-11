@@ -219,7 +219,7 @@ class InvoiceController extends Controller
                 ///echo  $request->ptotal_amount[$key];
                 //  dd($request->ptotal_amount[$key]);
 
-                $invoice_products = ['invoice_id' => $invoice_id, 'item_id' => $request->item_id[$key], 'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
+                $invoice_products = ['invoice_id' => $invoice_id, 'item_id' => $request->item_id[$key],'sac_code' => $request->psac[$key] ?? null, 'hsn_code' => $request->phsn[$key] ?? null, 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
                
                InvoiceItem::create($invoice_products);
             }
@@ -428,7 +428,7 @@ class InvoiceController extends Controller
                 $products = $request->pname;
                 foreach ($products as $key => $p)
                 {
-                    $invoice_products = ['invoice_id' => $id, 'item_id' => $request->item_id[$key], 'hsn_code' => $request->phsn[$key], 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
+                    $invoice_products = ['invoice_id' => $id, 'item_id' => $request->item_id[$key], 'sac_code' => $request->psac[$key] ?? null , 'hsn_code' => $request->phsn[$key] ?? null, 'description' => $request->pdescription[$key], 'item' => $request->pname[$key], 'rate' => $request->prate[$key], 'quantity' => $request->pqty[$key], 'days' => $request->pday[$key],'month' => '', 'gross_amount' => $request->pgros_amount[$key], 'discount' => $request->pdiscount[$key], 'total_amount' => $request->ptotal_amount[$key] , 'cgst' => $request->cgst[$key], 'igst' => $request->igst[$key], 'sgst' => $request->sgst[$key], 'tax_amount' => $request->ptax_amount[$key]];
                      InvoiceItem::create($invoice_products);
                 }
             }
